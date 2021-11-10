@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<h1>HTML element output</h1>
+	<p id="demo"></p>
+
+	<button onclick="document.getElementById('demo').innerHTML='Benazir Fathima' ">Try it</button>
+
+	
+</body>
+</html>
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<h1>HTML output with document.write()</h1>
+
+	<button onclick="document.write('Benazir Fathima')">Try it</button>
+
+</body>
+</html>
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<h1>Output with window.alert()</h1>
+
+	<button onclick="window.alert('Benazir Fathima') ">Try it</button>
+
+	
+</body>
+</html>
+
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<h1>Output with console.log()</h1>
+
+	<button onclick="console.log('Benazir Fathima') ">Try it</button>
+	
+</body>
+</html>
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<h1>Hide Name</h1>
+
+	<p id="demo1">Benazir Fathima</p>
+
+	<button type="button" onclick="document.getElementById('demo1').style.display='none' ">Try it</button>
+
+</body>
+</html>
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<h1>Showing hidden name</h1>
+
+	<p id="demo2" style="display: none;">Benazir Fathima</p>
+
+	<button type="button" onclick="document.getElementById('demo2').style.display='block' ">Try it</button>
+
+</body>
+</html>
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<h1>Show and hide name</h1>
+
+	<p id="demo3" style="display: none;">Benazir Fathima</p>
+
+	<button type="button" onclick="Show_hide()">Show and Hide</button>
+
+<script>
+
+    function Show_hide() {
+    var x = document.getElementById("demo3");
+
+     if (x.style.display === "none") {
+
+       x.style.display = "block";
+    } 
+     else {
+    
+    x.style.display = "none";
+  }
+}
+</script>
+
+</body>
+</html>
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+    <h1>Number of letters in my name</h1>
+
+    <p id="demo4"></p>
+
+    <script>
+		let text = "BenazirFathima";
+		document.getElementById("demo4").innerHTML = text.length;
+	</script>
+
+</body>
+</html>
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<h1>Howmany "a" in my name</h1>
+
+	<p id="demo5"></p>
+
+	<script>
+		let name = "Benazirfathima" ;
+		document.getElementById("demo5").innerHTML = name.match(/a/g);
+    </script>
+
+</body>
+</html>
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<h1>Howmuch "a" in my name</h1>
+
+	<p id="demo6"></p>
+    <button type="button" onclick="myFunction_a()">Try it</button>
+
+	<script>
+		function myFunction_a(){
+
+		var text = "BenazirFathima";
+
+		var count = (text.match(/a/g) || []).length;
+
+		document.getElementById("demo6").innerHTML = count;
+
+	}	
+    </script>
+
+</body>
+</html>
+
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<h1>Replace my name</h1>
+
+	<p id="demo7">Benazir Fathima</p>
+
+    <button onclick="myReplace()">Try it</button>
+
+
+	<script>
+		function myReplace() {
+
+  		let text = document.getElementById("demo7").innerHTML;
+  		document.getElementById("demo7").innerHTML = text.replace("Benazir","Shalini");
+    }
+</script>
+
+</body>
+</html>
+
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<h1>Multiply 2 numbers</h1>
+
+	<p id="demo8"></p>
+
+	<button onclick="document.getElementById('demo8').innerHTML = x ">Try it</button>
+
+<script>
+     var x = myFunction(4, 3);
+ 
+    function myFunction(a, b) {
+  	return a * b;
+}
+</script>
+
+
+</body>
+</html>
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+    <h1>List of fruits,Count and Index</h1>
+	<p id="demo9"></p>
+	<p id="demo10"></p>
+	<p id="demo11"></p>
+
+<script>
+		const fruits = ["Banana", "Orange", "Apple", "Mango","Pineapple","Grapes","Papaya","Litchi","Guava","Cherry"];
+
+			let list = "<ul>";  //fruits lists
+			fruits.forEach(myListfunction);
+			list += "</ul>";
+			document.getElementById("demo9").innerHTML = list;  //fruits list ended
+			document.getElementById("demo10").innerHTML = "The Numbers of fruits in list are:" + fruits.length;  // fruits count
+
+			let position = fruits.indexOf("Apple") + 1;  //fruit position
+            document.getElementById("demo11").innerHTML = "Apple is found in position " + position;  //friut position ended
+
+
+            //call function of fruits lists
+			function myListfunction(value) {
+  			list += "<li>" + value + "</li>";
+		} 
+</script>
+</body>
+</html>

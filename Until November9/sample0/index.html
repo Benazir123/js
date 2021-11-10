@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	
+	<style>
+		div.container{
+			display: flex;
+			align-items: center;
+			justify-content: flex-start;
+			padding: 12px 0px;
+
+		
+	</style>
+</head>
+<body>
+	
+	<center><h1>User Data</h1></center>
+	<fieldset>
+    
+	<form action="form.html">
+
+    <div class="container">
+		<label for="fname"><b>First Name:</b></label>
+		<input type="text" name="fname"><br><br>
+     </div>
+
+     <div class="container">  
+
+		<label for="lname"><b>Last Name:</b></label>
+		<input type="text" name="lname"><br><br>
+    </div>	
+         
+    <div class="container">  
+		<label for="city"><b>City:</b></label>
+		<select name="city" id="city">
+			<option value="madurai">Madurai</option>
+			<option value="chennai">Chennai</option>
+			<option value="trichy">Trichy</option>
+			<option value="coimbatore">Coimbatore</option>
+		</select>
+	</div>
+
+    <div class="container">  
+     <label for="state"><b>State:</b></label>
+        <select name="state" id="state">
+        	<option value="tamilnadu">TamilNadu</option>
+        	<option value="bangalore">Bangalore</option>
+        	<option value="kerala">Kerala</option>
+        </select>
+    </div>    
+     
+     <div class="container">  
+
+        <label for="zipcode"><b>Zipcode:</b></label>
+        <input type="number" name="zipcode" size="8"><br><br>
+    </div>
+
+    <div class="container">
+        <label for="address"><b>Address:</b></label>    
+        <address>
+        	<textarea id="address" name="address" rows="5" cols="50"></textarea>
+        </address>
+     </div>
+
+     <div class="container">    
+        <label for="hobbies"><b>Hobbies:</b></label><br>
+        <input type="checkbox" name="hobbies">Reading Books<br>
+        <input type="checkbox" name="hobbies">Hearing music<br>
+        <input type="checkbox" name="hobbies">Internet Browsing
+    </div>
+    
+    <div class="container">     
+        <label for="gender"><b>Gender:</b></label>
+        	<input type="radio" name="gen">Male
+        	<input type="radio" name="gen">Female
+        	<input type="radio" name="gen">Others
+    </div>
+    
+    <div class="container">  
+
+        <label for="attachment"><b>Attachment:</b></label>
+        <input type="file" name="file" id="file"><br><br>
+
+        <button type="button" value="Submit">Submit</button> 
+    </div>
+ 
+	</form>	
+</fieldset>
+
+</body>
+</html>

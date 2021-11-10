@@ -1,0 +1,44 @@
+input[type=text],input[type=email],input[type=number]{
+	display: flex;
+	padding: 10px;
+	border-radius: 5px;
+    width: 350px;
+
+
+}
+textarea{
+  border-radius: 5px;
+  width: 370px;
+}
+
+input[type=button]{
+	width: 50%;
+	background-color: #d234eb;
+	color: #fff;
+	padding: 10px;
+	border: none;
+	border-radius: 20px;
+	border-bottom: 4px solid #7d3978;
+	cursor: pointer;
+	font-size: 16px;
+	font-weight: 400;
+	display: flex;
+	flex-direction: row;
+	margin: auto;
+
+}
+.container1{
+	border: 1px solid #732c7d;
+	background-color: #732c7d;
+	color: white;
+	padding: 20px;
+	width: 20%;
+	height: 600px;
+}
+
+
+i{
+	padding-right: 10px;
+	margin-left: 20px;
+	margin-right: 20px;
+}
