@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="C:\Users\nova\Desktop\sample\css\style.css">
+	<style type="text/css">
+		.container{
+			border-radius: 20px;
+			padding: 20px;
+			background-attachment: scroll;
+			background-color: #f1d0f5;
+            border: 5px solid #732c7d;
+            
+		}
+		body{
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			padding: 20px;
+			background-image: url("bg.jpg");
+            background-image: repeat-x;
+
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+	<div>
+		<center><h1>FORM</h1></center>
+	</div>
+    <div>
+        <label for="firstname">FirstName:</label>
+    	<input type="text" name="fname" placeholder="Firstname" id="fname">
+    </div>    
+    <div>
+    	<label for="lastname">LastName:</label>
+    	<input type="text" name="lname" placeholder="Lastname" id="lname">
+    </div>    
+    <div>
+    	<label for="city">City:</label>
+        <select style="margin-left: 100px;border-radius: 10px; background-color: #dedad1;"  name="city" id="city">
+        	<option value=" ">Select city</option>
+    		<option value="madurai">Madurai</option>
+    		<option value="trichy">Trichy</option>
+    		<option value="coimbatore">Coimbatore</option>
+    		<option value="chennai">Chennai</option>
+    	</select>
+    </div>
+    <div>
+    	<label for="state">State:</label>
+    	<select name="state" style="margin-left: 95px;border-radius: 10px;background-color:  #dedad1;" id="state">
+    		<option value=" ">Select State</option>
+    		<option value="tamilnadu">TamilNadu:</option>
+    		<option value="bangalore">Bangalore:</option>
+    		<option value="kerala">Kerala</option>
+    		<option value="mumbai">Mumbai</option>
+    	</select>
+    </div>
+    <div>
+    	<label for="zipcode">Zipcode:</label>
+    	<input type="number" name="name" id="zipcode" placeholder="zipcode">
+    </div>
+    <div>
+    	<label for="address">Address:</label>
+    	<textarea name="address" id="address" placeholder="Enter your Address..." cols="50" rows="5"></textarea>
+    	</address>
+    </div>
+    <div>
+    	<label for="hobbies">Hobbies:</label>
+    	<input type="checkbox" class="checkboxradio" name="hobbies">Reading Books
+    	<input type="checkbox" name="hobbies">Internet Browsing
+    	<input type="checkbox" name="hobbies">Others
+    </div>
+    <div>
+    	<label for="gender">Gender:</label>
+    	<input type="radio" class="checkboxradio" name="gen">Male
+        <input type="radio" name="gen">Female
+    	<input type="radio" name="gen">Others
+    </div>
+    <div>
+    	<label for="file">Attachment:</label>
+    	<input class="attach" type="file" style="margin-left: 50px;" name="file" id="file">
+    </div>
+    <div>
+    	<center>
+    		<input type="submit" name="submit" value="Submit">
+    	</center>
+    </div>
+</div>
+</body>
+</html>
