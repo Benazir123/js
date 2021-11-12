@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<p>apply function</p>
+
+<p id="demo"></p>
+
+<script>
+const person = {
+  fullName: function(age, country) {
+    return this.firstName + " " + this.lastName
+  }
+}
+
+const person1 = {
+  firstName:"John",
+  lastName: "Doe"
+}
+
+document.getElementById("demo").innerHTML = person.fullName.apply(person1);
+</script>
+
+</body>
+</html>
+
