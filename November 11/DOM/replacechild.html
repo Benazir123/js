@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<h2>Replace child</h2>
+	<div id="div1">
+		<p id="p1">This is first paragraph</p>
+		<p id="p2">This is second paragraph</p>
+    </div>
+
+	<button onclick="myFunction()">Click to Replace child</button>
+
+	<script>
+		function myFunction(){
+			const parent=document.getElementById("div1");
+			const child=document.getElementById("p2");
+			const para=document.createElement("p");
+			const node=document.createTextNode("This is replaced paragraph");
+			para.appendChild(node);
+			parent.replaceChild(para,child);
+		}
+	</script>
+
+</body>
+</html>
