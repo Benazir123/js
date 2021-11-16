@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h2>Fetch File Method using async await</h2>
+
+<p id="demo"></p>
+
+<script>
+getText("demo123.txt");
+
+async function getText(file) {
+  let x = await fetch(file);
+  let y = await x.text();
+  document.getElementById("demo").innerHTML = y;
+}
+</script>
+
+</body>
+</html>

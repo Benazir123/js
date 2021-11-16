@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+	<h2>Fetch File Method</h2>
+<p id="demo"></p>
+<script>
+
+let file = "demo123.txt"
+
+fetch (file)
+.then(x => x.text())
+.then(y => document.getElementById("demo").innerHTML = y);
+
+</script>
+</body>
+</html>
+
+
