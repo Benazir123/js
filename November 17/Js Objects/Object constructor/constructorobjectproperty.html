@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Object Property Constructors</h2>
+
+<p id="demo"></p>
+
+<script>
+// Constructor function for Person objects
+function Person(first, last, eye) {
+  this.firstName = first;
+  this.lastName = last;
+  this.eyeColor = eye;
+}
+
+// Create a Person object
+const myMother = new Person("Jennath", "Noorjahan", "brown");
+myMother.age = 45;
+
+// Display age
+document.getElementById("demo").innerHTML =
+"My mother age is " + myMother.age; 
+</script>
+
+</body>
+</html>

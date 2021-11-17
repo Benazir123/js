@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+
+
+<div id="demo">
+<h2>XMLHttp Request Object</h2>
+<button id="button" onclick="loadDoc()">Click me</button>
+</div>
+<script>
+	function loadDoc(){
+     const xhttp = new XMLHttpRequest();
+     xhttp.onload = function(){
+      document.getElementById("demo").innerHTML = this.responseText();
+     }
+     xhttp.open("GET", "ajax_info.txt");
+     xhttp.send();
+
+	}
+
+</script>
+
+
+</body>
+</html>
