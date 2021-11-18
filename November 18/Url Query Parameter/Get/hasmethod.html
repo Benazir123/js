@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>
+		
+	</title>
+</head>
+<body>
+
+	<h2>Has() Method</h2>
+
+	<script>
+	     let url_str = 'http://demo.com?id=100&cat=js&cat=ui&cat=css';
+	     let url = new URL(url_str);
+
+	     let search_params = url.searchParams;
+
+	     let id = search_params.has("id");
+	     console.log(id);
+
+	      if(id){
+                 console.log(search_params.get("id"))
+
+	      }
+
+	</script>
+
+</body>
+</html>

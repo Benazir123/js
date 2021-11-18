@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+
+	<h2>Update/Edit Method</h2>
+	<script>
+		 var url = new URL('http://demourl.com/path?id=100&topic=main');
+		 var search_params = url.searchParams;
+
+		 search_params.set("id","101");
+
+		 url.search = search_params.toString();
+		 var new_url = url.toString();
+
+		 console.log(new_url);
+
+
+	</script>
+
+</body>
+</html>

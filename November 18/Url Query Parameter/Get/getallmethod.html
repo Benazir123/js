@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+
+
+<h2>Get All Method</h2>
+<p>Click below to see the multi-valued parameter</p>
+<button onclick="myFunction()">Click me</button>
+<p id="demo"></p>
+
+<script>
+	function myFunction(){
+       
+       let url_str = 'http://demo.com?id=100&cat=js&cat=ui&cat=css';
+       let url = new URL(url_str);
+
+       let search_params = url.searchParams;
+       let cat = search_params.getAll("cat");
+       document.getElementById("demo").innerHTML = cat;
+
+
+	}
+
+</script>
+
+
+</body>
+</html>

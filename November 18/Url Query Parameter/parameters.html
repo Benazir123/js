@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Document</title>
+<style>
+body {
+font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+.sample {
+font-size: 18px;
+font-weight: 500;
+color: red;
+}
+</style>
+</head>
+<body>
+<h1>GET parameters from URL</h1>
+<div class="sample">https://www.google.com?imageSize=440&color=blue</div>
+<div style="font-weight: bold;" class="result"></div>
+<button class="Btn">CLICK HERE</button>
+<h3>
+Click on the above button to get the imageSize and color value from the above URL
+</h3>
+<script>
+let sampleEle = document.querySelector(".sample");
+let resultEle = document.querySelector(".result");
+var url = new URL(sampleEle.innerText);
+var urlParams = url.searchParams;
+var imageSize = urlParams.get("imageSize");
+var color = urlParams.get("color");
+document.querySelector(".Btn").addEventListener("click", () => {
+resultEle.innerHTML += 'Image size = ' + imageSize + '<br>' + 'Image color = ' + color;
+});
+</script>
+</body>
+</html>
