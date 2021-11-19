@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<h2>Replace method</h2>
+	<p>Click below to see the word change</p>
+	<button onclick="myFunction()">Try it</button>
+	<p id="demo">Please open the door and open the window</p><br><br>
+
+	<p>Click below to see the words change</p>
+	<button onclick="mySecondFunction()">Try it</button>
+	<p id="demo1">Please open the door and open the window</p>
+
+    <script>
+		function myFunction(){
+           
+         let text = document.getElementById("demo").innerHTML;
+		document.getElementById("demo").innerHTML = text.replace("open","close");
+
+		}
+
+		function mySecondFunction(){
+
+          let txt = document.getElementById("demo1").innerHTML;
+          document.getElementById("demo1").innerHTML = txt.replace(/open/g,"close");
+		}
+		
+
+	</script>
+
+</body>
+</html>
