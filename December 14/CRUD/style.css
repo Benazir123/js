@@ -1,0 +1,28 @@
+.container{
+	margin-top: 10px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+div{
+	padding: 10px;
+}
+
+input[type=text],input[type=email]{
+	padding: 5px;
+	border-radius: 12px;
+	width: 420px;
+}
+
+#list{
+	float: right;
+	border-radius: 8px;
+	width: 10%;
+}
+
+input[type=submit]{
+	border-radius: 8px;
+
+}
