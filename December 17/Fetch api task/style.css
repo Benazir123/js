@@ -1,0 +1,15 @@
+h1{
+	float: left;
+}
+
+#addUser{
+	float: right;
+	width: 10%;
+	border-radius: 8px;
+	margin-right: 10px;
+}
+
+.table{
+	margin: 30px;
+
+}
