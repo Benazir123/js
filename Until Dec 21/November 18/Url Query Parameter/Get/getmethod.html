@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+
+ <h2>Get method</h2>
+ <script>
+ 	
+     let url = new URL('http://demo.com?id=100&topic=main');
+     let search_params = url.searchParams;
+
+     let id = search_params.get("id");
+     let topic =search_params.get("topic");
+
+     console.log(id);
+     console.log(topic);
+
+ </script>
+
+</body>
+</html>

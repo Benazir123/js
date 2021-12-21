@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+
+   <h2>Constructor Method</h2>
+   <p id="demo"></p>
+   <script>
+   	
+  function Person(first, last, eye) {
+  this.firstName = first;
+  this.lastName = last;
+  this.eyeColor = eye;
+  this.fullName = function() {
+    return this.firstName + " " + this.lastName
+  };
+}
+
+// Create a Person object
+const myFather = new Person("Shahul", "Hameed", "brown");
+
+// Display full name
+document.getElementById("demo").innerHTML =
+"My father fullname is " + myFather.fullName();
+   </script>
+
+
+
+
+
+
+</body>
+</html>

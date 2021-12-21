@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+
+<script type="text/javascript">
+	
+ const promise1 = new Promise((resolve, reject) => {
+   throw "hello world";
+});
+
+promise1.catch((error) => {
+  console.error(error);
+  // expected output: hello world
+});
+
+
+
+
+</script>
+
+
+</body>
+</html>

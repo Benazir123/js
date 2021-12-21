@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+
+  <link rel="stylesheet" type="text/css" href="style.css">
+    
+    <!-- Latest compiled and minified CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<!-- Latest compiled JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+
+<script type="text/javascript" src="script.js"></script>
+
+
+</head>
+<body>
+     
+     <div class="container">
+        <div id="table-title">
+          <div class="row">
+            <div class="col-sm-8"><h2>Employee Details</h2></div>
+            <div class="col-sm-4">
+    <button type="button" class="btn btn-info add-new" id="addBtn" onclick="addRedirect()"><i class="fa fa-plus"></i> Add New</button></div>
+        </div>
+    </div>
+
+
+    <div class="contact-list-details">
+        <!--Table displays here-->
+    </div>
+    
+
+</div>
+
+    
+
+   <script type="text/javascript">
+
+   //for table row display//
+ var tbListRow = $(`
+     <table  class="table table-stripped">
+          <thead>
+            <tr>
+              <th>S.No</th>
+              <th>FirstName</th>
+              <th>LastName</th>
+              <th>E-Mail</th>
+              <th>Contact-No</th>
+              <th>Active</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+     `);
+
+     
+    var contactList = [];
+    if(localStorage.contactDetails) {
+      contactList = JSON.parse(localStorage.contactDetails);
+    }
+
+       
+     for (let index = 0; index < contactList.length; index++) {
+       const element = contactList[index];
+
+
+     tbListRow.append(`
+        <tr id="tableBody">
+              <td>${element.id}</td>
+              <td>${element.firstName}</td>
+              <td>${element.lastName}</td>
+              <td>${element.email}</td>
+              <td>${element.phone}</td>
+              <td>
+                 <input class="form-check-input" type="checkbox" id="flexCheckDefault" ${element.active_status == 1 ? 'checked' : ''}>              
+              </td>
+              <td>
+    <button type="button" id="editBtn" class="btn btn-success" onclick="editRedirect(${index})">Edit</button>
+                <button type="button" id="dltBtn" class="btn btn-danger" onclick="onDelete()">Delete</button>
+              </td>
+        </tr>
+                           `);
+   
+     }
+
+     
+
+     $(".contact-list-details").html(tbListRow);
+
+   
+
+
+     </script>
+
+
+</body>
+</html>

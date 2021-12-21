@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Object Method Constructors</h2>
+
+<p id="demo"></p>
+
+<script>
+// Constructor function for Person objects
+function Person(first, last, eye) {
+  this.firstName = first;
+  this.lastName = last;
+  this.eyeColor = eye;
+}
+
+// Create a Person object
+const myMother = new Person("Jennath", "Noorjahan", "brown");
+myMother.name = function() {
+  return this.firstName + " " + this.lastName;
+};
+
+
+// Display age
+document.getElementById("demo").innerHTML =
+"My mother name is " + myMother.name(); 
+</script>
+
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Object prototype</h2>
+
+<p id="demo"></p>
+
+<script>
+// Constructor function for Person objects
+function Person(first, last, eye) {
+  this.firstName = first;
+  this.lastName = last;
+  this.eyeColor = eye;
+}
+Person.prototype.nationality = "Indian";//create prototype for constructor
+
+// Create a Person object
+const myFather = new Person("Shahul", "Hameed", "brown");
+
+// Display age
+document.getElementById("demo").innerHTML =
+"The Nationality of my father is " + myFather.nationality; 
+</script>
+
+</body>
+</html>

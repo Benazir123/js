@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+
+	<script type="text/javascript">
+		 
+		 //1.fulfilled 
+		 async function myFunction(){
+		 	return "Success";
+		 }
+		 console.log("async fulfilled=>",myFunction());
+
+         //2.rejected
+       async function myFunction1(){
+       	return new Promise((resolve,reject) => {
+       		reject("Failure");
+       	})
+       }
+       myFunction1().then(console.log)
+        .catch((error) => {
+           console.log("Global error =>",error);
+       })
+
+        //3.pending
+        async function myFunction2(){
+          return new Promise((resolve,reject) => {
+            resolve(1);
+          })
+        }
+        // console.log("async pending =>", myFunction2());
+       
+        async function awaitFn(){
+          const output = myFunction2();
+          console.log(output);
+        }
+        awaitFn();
+
+	</script>
+
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+   
+   <h2>Stringify Function</h2>
+
+   <p id="demo"></p>
+
+   <script>
+   	 const myObj={name:"Bena",age:function(){return 20},city:"Madurai"};
+   	 myObj.age=myObj.age.toString();
+   	 const myJSON=JSON.stringify(myObj);
+   	 document.getElementById("demo").innerHTML=myJSON;
+
+
+   </script>
+
+
+</body>
+</html>

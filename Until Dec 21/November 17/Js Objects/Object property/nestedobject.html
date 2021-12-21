@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Nested objects</h2>
+
+<p id="demo"></p>
+
+<script>
+const myObj = { name: "Bena",age: 20,
+  cars: {
+  car1: "Rolls Royce",
+  car2: "Lambhorghini",
+  car3: "BMW"
+  }
+}
+document.getElementById("demo").innerHTML = " My Favourite four wheeler is " + myObj.cars.car2;
+</script>
+
+</body>
+</html>

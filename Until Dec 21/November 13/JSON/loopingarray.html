@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<h2>Looping through an array</h2>
+
+	<p id="demo"></p>
+
+	<script>
+		const myObj = '{"name":"John", "age":30, "cars":["RollsRoyce", "BMW", "Lamborghini"]}';
+		const myJSON =JSON.parse(myObj);
+
+		let text="";
+		for(const x in myObj.cars){
+			text += myObj.cars[x] + "<br>";
+		}
+		document.getElementById("demo").innerHTML= x;
+	</script>
+
+</body>
+</html>

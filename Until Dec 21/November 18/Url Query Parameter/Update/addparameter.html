@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+
+   <h2>Add Parameter</h2>
+   <script>
+   	 
+   	var url = new URL('http://demourl.com/path?id=100');
+   	var search_params = url.searchParams;
+
+   	search_params.set("topic","main");
+
+   	url.search = search_params.toString();
+   	var new_url = url.toString();
+
+   	console.log(new_url);
+
+
+   </script>
+
+
+</body>
+</html>

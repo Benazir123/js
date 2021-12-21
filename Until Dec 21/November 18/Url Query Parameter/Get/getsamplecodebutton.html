@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+
+    <h2>Sample code for query parameter</h2>
+    <p>Click me to get id value</p>
+    <button onclick="myFunction()">Click me</button>
+    <p id="demo"></p>
+
+  <script>
+  	function myFunction(){
+      let url_str = 'http://demo.com?id=100&cat=js';
+  	  let url = new URL(url_str);
+
+  	  let search_params = url.searchParams;
+  	  let id = search_params.get("id");
+  	  document.getElementById("demo").innerHTML = id;
+	}
+  	 
+  </script>
+
+
+</body>
+</html>

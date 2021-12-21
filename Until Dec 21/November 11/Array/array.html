@@ -1,0 +1,33 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+    <h1>List of Persons,Count and Index</h1>
+	<p id="demo1"></p>
+	<p id="demo2"></p>
+	<p id="demo3"></p>
+
+<script>
+		const persons = ["Benazir","Asifa","Jennath","Shahul"];
+
+			let list = "<ul>";  //fruits lists
+			persons.forEach(myListfunction);
+			list += "</ul>";
+			document.getElementById("demo1").innerHTML = list;  //fruits list ended
+
+			document.getElementById("demo2").innerHTML = "The Numbers of persons in list are:" + persons.length;  // fruits count
+
+			let position = persons.indexOf("Benazir") + 1;  //fruit position
+            document.getElementById("demo3").innerHTML = "Benazir is found in position " + position;  //friut position ended
+
+
+            //call function of fruits lists
+			function myListfunction(value) {
+  			list += "<li>" + value + "</li>";
+		} 
+</script>
+</body>
+</html>

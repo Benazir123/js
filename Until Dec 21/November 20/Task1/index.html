@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Bill Details</title>
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="main.js"></script>
+</head>
+<body>
+
+  <div class="container" id="formDiv">
+       <form id="billForm">
+
+          
+       <h1>Bill Management</h1>
+       <hr>
+
+            <div>
+            <label class="col-sm-1" for="name" >Name:</label>
+            <input type="text" id="name" placeholder="Name" required autofocus>
+            </div><br>
+
+            <div>
+            <label class="col-sm-1" for="date" >Date:</label>
+            <input type="date" id="date" required autofocus>
+            </div><br>
+
+             <div>
+            <label class="col-sm-1" for="store" >Store:</label>
+            <input type="text" id="store" placeholder="Store" required>
+            </div><br>
+
+            <div>
+            <label class="col-sm-1" for="description">Description:</label>
+            <textarea id="description" cols="22" rows="2" placeholder="Details"></textarea>
+            </div><br>
+
+            <div>
+            <label class="col-sm-1" for="image" >Image:</label>
+            <img src="https://image.shutterstock.com/image-vector/payment-check-isometric-3d-buying-600w-1888641541.jpg"  id="img" name="image" style="width:128px;height:128px;">
+            </div><br>
+
+            <div>
+            <label class="col-sm-1" for="amount" >Amount:</label>
+            <input type="number" id="amt" placeholder="Amount" required autofocus>
+            </div><br>
+
+            <button type="submit" class="btn btn-primary">Store Records</button>
+
+        </form>
+        <br>
+        <label for="retrieveDate" >Pick Date to retrieve item:</label>
+        <input type="date" id="retrieveDate" required>
+        <button id="retrieveButton" class="btn btn-success">List records</button>
+        <br>
+        <div id="retrieve"></div>
+      
+        
+  </div>
+</body>
+</html>

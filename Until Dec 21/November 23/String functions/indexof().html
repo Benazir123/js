@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+  <script type="text/javascript">
+  	  
+  	  let sentence = 'Barking dog seldom bite.If the dog barked,was it really lazy?';
+
+  	  let searchTerm = 'dog';
+  	  let indexofFirst = sentence.indexOf(searchTerm);
+
+  	  console.log(`The index of the first ${searchTerm} is from the beginning is ${indexofFirst}`);
+
+  	  console.log(`The index of the second ${searchTerm} is ${sentence.indexOf(searchTerm, (indexofFirst+1))}`);
+  </script>
+
+
+</body>
+</html>

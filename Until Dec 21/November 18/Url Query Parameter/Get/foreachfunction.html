@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+
+<h2>forEach() function</h2>
+<script>
+	
+    let url_str = 'http://demo.com?id=100&cat=js';
+    let url = new URL(url_str);
+
+    let search_params = url.searchParams;
+
+   search_params.forEach(function(value,key){
+         console.log(key + "=" + value);
+
+   });
+
+</script>
+
+
+</body>
+</html>
