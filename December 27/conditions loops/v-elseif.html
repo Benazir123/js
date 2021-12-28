@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>  
+</head>
+<body>
+	<div id="app">
+		<span v-if="seen">This is visible to you</span>
+		<span v-else-if=>You can't see me</span>
+	</div>
+	<script type="text/javascript">
+		var app = new Vue({
+            el: "#app",
+            data: {
+            	seen: false
+            }
+		});
+
+	</script>
+</body>
+</html>
