@@ -27,5 +27,11 @@
        mounted() {
            alert("mounted hook has been called"); 
        },
+       beforeUnmount() {
+           alert("beforeUnmount has been called");
+           console.log(this.books) 
+          
+       }
+          
     }
 </script>

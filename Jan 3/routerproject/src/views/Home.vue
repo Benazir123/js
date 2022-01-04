@@ -1,15 +1,9 @@
 <template>
-  <div class="home">
-    <h1>Home</h1>
-  </div>
-</template>
-<script>
-export default {
-  name: 'home',
-  data () {
-    return {
-      msg: 'Welcome to Your Vue.js App'
-    }
-  }
-}
-</script>
+   <div class="Home">
+       <h1>Home</h1>
+       <p>Welcome to HomePage..!</p>
+       <p>Click below to login</p>
+      <div>
+       <router-link class="btn btn-outline-primary" to="/login">Login</router-link>
+      </div>
+    </div></template>
