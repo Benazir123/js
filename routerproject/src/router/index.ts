@@ -6,30 +6,29 @@ import Login from "../views/Login.vue";
 
 const routes = [
   {
+    path: "/login",
+    name: "Login",
+    component: Login,
+  },
+  {
     path: "/",
     name: "LayoutComponent",
     component: LayoutComponent,
-    children:[
+    children: [
       {
         path: "/",
         name: "Home",
-        component:Home,
-        props:true
+        component: Home,
+        props: true,
       },
       {
         path: "/about",
         name: "About",
-        component:About,
-        props:true
+        component: About,
+        props: true,
       },
-      {
-        path: "/login",
-        name: "Login",
-        component:Login,
-        props:true
-      }
-  ]
-}
+    ],
+  },
 ];
 
 const router = createRouter({
