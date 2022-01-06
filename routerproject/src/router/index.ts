@@ -3,8 +3,14 @@ import LayoutComponent from "../layouts/LayoutComponent.vue";
 import Home from "../views/Home.vue";
 import About from "../views/About.vue";
 import Login from "../views/Login.vue";
+import Service from "../views/Service.vue";
 
 const routes = [
+  {
+    path: "/service",
+    name: "Service",
+    component: Service,
+  },
   {
     path: "/login",
     name: "Login",

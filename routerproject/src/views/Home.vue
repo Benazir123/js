@@ -64,42 +64,121 @@ p {
 -->
 
 <template>
-  <div class="content"></div>
+     <div>
+        <div>
+          <h1>Users Data
+            <button type="button" id="addUser" class="btn btn-info mt-3" >Add User</button>
+          </h1>
+        </div>
+
+          <div class="container"> 
+          <table class="table table-stripped">
+                <thead>
+                <tr>
+                   <th>Id</th>
+                   <th>Name</th>
+                   <th>Email</th>
+                </tr>
+                </thead>
+                 <tbody id="table-body">
+                 	<!--users api data displays here in table-->
+                   
+                 </tbody>
+         </table> 
+         </div>    
+
+      </div>
 </template>
 
 <script>
-  import axios from "axios"
-  export default {
-     created(){
-      const api = "https://jsonplaceholder.typicode.com/users"
-       let post = {
-           id: 11,
-           name: "bena",
-           email: "bena@gmail.com"
-       };
-       let put ={
-            id: 12,
-           name: "arun",
-           email: "arun@gmail.com"
-       };
-      axios.get(api)
-      .then((result) => {
-      console.log("Get Method", result.data);
-        });
-       axios.post(api, post)
-      .then((result) => {
-      console.log("Post Method", result.data);
-        });
-      axios.put(`${api}/${10}`, put)
-      .then((result) => {
-      console.log("Put Method", result.data);
-        }); 
-      axios.delete(`${api}/${1}`)
-      .then((result) => {
-      console.log("Delete Method", result.data);
-       });
-     }
-  };
+     import axios from "axios";
+      export default{
+        mounted() {
+              var list = new Array(
+         axios.get("https://jsonplaceholder.typicode.com/users")
+         .then((response) => {
+             console.log("list", response.data);
+              getTable(response.data)
+         })
+        
+     )
+     
+            const getTable = (users) => {
+            if(users.length > 0){
+             var tableData = "";
+        list.forEach(users => {
+             tableData += "<tr><td>" + users.id + "</td>";
+             tableData += "<td>" + users.name + "</td>";
+             tableData += "<td>" + users.email + "</td></tr>";
+         });
+           document.getElementById("table-body").innerHTML = tableData;
+      }
+          return getTable() 
+        }
+            
+        },
+        
+
+      
+
+      //  var len = list.length;
+      //  for(var i=0; i < len; i++);
+      //  const getTable = (users) => {
+      //    array.forEach(element => {
+           
+      //    });
+
+      //  }
+
+
+
+      // import myService from "../services/myService"
+      // const tableBody = document.querySelector("#table-body");
+       
+      //  var user = myService.userlist()
+      //   console.log("Get Method=>", user)
+     
+    //  const getTable = (users) => {
+    //     if(users.length > 0){
+    //       var temp = "";
+    //       users.forEach(data => {
+    //             temp += "<tr>";
+    //             temp += "<td>" + data.id + "</td>"
+    //             temp += "<td>" + data.name + "</td>"
+    //             temp += "<td>" + data.email + "</td>"
+    //             temp += "</tr>"
+    //          });
+    //         tableBody.innerHTML = temp; 
+    //       }
+    //  }
+
+    //  function renderTable(){
+    //      axios.get("https://jsonplaceholder.typicode.com/users")
+    //      .then((response) => {
+    //          console.log("B=>",response.data)
+    //          getTable(response.data)
+    //      })
+
+    //  }
+
+    //  window.addEventListener("load" , (e) => {
+    //      e.preventDefault();
+         
+    //      renderTable();
+    //  })
+
+      }
+    
+
 </script>
+
+<style scoped>
+ #addUser{
+	float: right;
+	width: 10%;
+	border-radius: 8px;
+	margin-right: 10px;
+}
+</style>
 
 
