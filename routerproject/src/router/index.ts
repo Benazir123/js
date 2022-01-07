@@ -4,6 +4,7 @@ import Home from "../views/Home.vue";
 import About from "../views/About.vue";
 import Login from "../views/Login.vue";
 import Service from "../views/Service.vue";
+import AddUser from "../views/AddUser.vue";
 
 const routes = [
   {
@@ -33,6 +34,11 @@ const routes = [
         component: About,
         props: true,
       },
+      {
+        path: "/adduser",
+        name: "AddUser",
+        component: AddUser,
+      }
     ],
   },
 ];

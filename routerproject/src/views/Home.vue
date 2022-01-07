@@ -67,7 +67,7 @@ p {
      <div>
         <div>
           <h1>Users Data
-            <button type="button" id="addUser" class="btn btn-info mt-3" >Add User</button>
+            <button type="button" id="addUser" class="btn btn-info mt-3" @click="addUser()">Add User</button>
           </h1>
         </div>
 
@@ -80,97 +80,64 @@ p {
                    <th>Email</th>
                 </tr>
                 </thead>
-                 <tbody id="table-body">
-                 	<!--users api data displays here in table-->
-                   
-                 </tbody>
+                <tbody> 
+                  <tr v-for="(user,index) in list" :key="index">
+                    <td>{{user.id}}</td>
+                    <td>{{user.name}}</td>
+                    <td>{{user.email}}</td>
+                  </tr>
+                </tbody>
          </table> 
-         </div>    
-
-      </div>
+         </div> 
+     <div v-if="show">
+         <addUser/>
+    </div>
+    </div>
 </template>
 
 <script>
-     import axios from "axios";
-      export default{
-        mounted() {
-              var list = new Array(
-         axios.get("https://jsonplaceholder.typicode.com/users")
-         .then((response) => {
-             console.log("list", response.data);
-              getTable(response.data)
-         })
-        
-     )
-     
-            const getTable = (users) => {
-            if(users.length > 0){
-             var tableData = "";
-        list.forEach(users => {
-             tableData += "<tr><td>" + users.id + "</td>";
-             tableData += "<td>" + users.name + "</td>";
-             tableData += "<td>" + users.email + "</td></tr>";
-         });
-           document.getElementById("table-body").innerHTML = tableData;
+import { ref } from '@vue/reactivity';
+import myService from "../services/myService";
+import { defineAsyncComponent, onMounted } from '@vue/runtime-core';
+import AddUser from "../views/AddUser.vue"
+// import { useRouter } from 'vue-router';
+ export default {
+      component: {
+        addUser : AddUser
+      },
+    setup(){
+      // const router = useRouter();
+      // const addUser = () => {
+      //      router.push({
+      //           path:"/adduser"
+      //      });
+      // }
+      const addUser = () => {
+             show.value = true
       }
-          return getTable() 
+      const show = ref(false)
+      const list = ref()
+        async function listusers() {
+        list.value = await myService.userlist()
+        console.log("Get Method=>", list.value)
+        
+        var postuser = await myService.postlist()
+        console.log("Post Method=>", postuser)
+
+        var putuser = await myService.putlist()
+        console.log("Put Method=>", putuser)
         }
-            
-        },
-        
-
-      
-
-      //  var len = list.length;
-      //  for(var i=0; i < len; i++);
-      //  const getTable = (users) => {
-      //    array.forEach(element => {
-           
-      //    });
-
-      //  }
-
-
-
-      // import myService from "../services/myService"
-      // const tableBody = document.querySelector("#table-body");
-       
-      //  var user = myService.userlist()
-      //   console.log("Get Method=>", user)
+        onMounted(listusers)
+        return{
+          listusers,
+          list,
+          show,
+          addUser
+       }
+     }
      
-    //  const getTable = (users) => {
-    //     if(users.length > 0){
-    //       var temp = "";
-    //       users.forEach(data => {
-    //             temp += "<tr>";
-    //             temp += "<td>" + data.id + "</td>"
-    //             temp += "<td>" + data.name + "</td>"
-    //             temp += "<td>" + data.email + "</td>"
-    //             temp += "</tr>"
-    //          });
-    //         tableBody.innerHTML = temp; 
-    //       }
-    //  }
-
-    //  function renderTable(){
-    //      axios.get("https://jsonplaceholder.typicode.com/users")
-    //      .then((response) => {
-    //          console.log("B=>",response.data)
-    //          getTable(response.data)
-    //      })
-
-    //  }
-
-    //  window.addEventListener("load" , (e) => {
-    //      e.preventDefault();
-         
-    //      renderTable();
-    //  })
-
-      }
-    
-
-</script>
+    }
+ </script>
 
 <style scoped>
  #addUser{
