@@ -1,12 +1,13 @@
 <template>
     <div>
         	<h1>Add User</h1>
-        <form id="form" class="container">
+	</div>
+	<div class="container">
         <div>
 		    <input type="text" name="userId" id="userId" placeholder="Id" required>
 		</div>
 		<div>
-			<input type="text" name="name" id="name" placeholder="Name" required>
+			<input type="text" name="name" id="userName" placeholder="Name" required>
 		</div>
 		<div>
         <input type="email" name="email" id="email" placeholder="Email" required>
@@ -14,22 +15,30 @@
 		<div>
 			<input type="submit" name="submit" id="addBtn" @click="submitFunc()" class="btn btn-success" value="Add">
 		</div>
-    </form>
     </div>
 </template>
 
 <script>
-import { useRouter } from 'vue-router'
+// import { useRouter } from 'vue-router'
 //  import myService from '../services/myService'
 export default {
 	 name: "AddUser",
 	setup(){
-		const router = useRouter();
+		// const router = useRouter();
+		var userId = document.getElementById("userId");
+		var userName = document.getElementById("userName");
+        var email = document.getElementById("email");
+
+
 		const submitFunc = () => {
-			 router.push({
-				 path: "/"
-			 });
+            //  router.push({
+			// 	 path: "/"
+			//  });
+			console.log("id", userId.value);
+			console.log("name", userName.value);
+			console.log("email", email.value)
 		}
+		 
 		return{
 		   submitFunc
 	   }

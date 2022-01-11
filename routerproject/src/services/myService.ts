@@ -14,9 +14,9 @@ export default{
         //for post users
         async postlist(){
             const post = {
-                     id: 11,
-                     name: "bena",
-                     email: "bena@gmail.com"
+                     id: "",
+                     name: "",
+                     email: "",
                  };
             const response = await axios.post("https://jsonplaceholder.typicode.com/users", post)
             .then((response) => {

@@ -64,7 +64,7 @@ p {
 -->
 
 <template>
-     <div>
+     <div v-if="!show">
         <div>
           <h1>Users Data
             <button type="button" id="addUser" class="btn btn-info mt-3" @click="addUser()">Add User</button>
@@ -89,31 +89,25 @@ p {
                 </tbody>
          </table> 
          </div> 
-     <div v-if="show">
-         <addUser/>
     </div>
+     <div v-if="show">
+         <AddUser/>
     </div>
 </template>
 
 <script>
 import { ref } from '@vue/reactivity';
 import myService from "../services/myService";
-import { defineAsyncComponent, onMounted } from '@vue/runtime-core';
-import AddUser from "../views/AddUser.vue"
-// import { useRouter } from 'vue-router';
+import { onMounted } from '@vue/runtime-core';
+import AddUser from "../views/AddUser.vue"; 
  export default {
-      component: {
-        addUser : AddUser
+      components: {
+        AddUser
       },
     setup(){
-      // const router = useRouter();
-      // const addUser = () => {
-      //      router.push({
-      //           path:"/adduser"
-      //      });
-      // }
       const addUser = () => {
              show.value = true
+             console.log("add", show.value)
       }
       const show = ref(false)
       const list = ref()
@@ -121,8 +115,8 @@ import AddUser from "../views/AddUser.vue"
         list.value = await myService.userlist()
         console.log("Get Method=>", list.value)
         
-        var postuser = await myService.postlist()
-        console.log("Post Method=>", postuser)
+        list.value = await myService.postlist()
+        console.log("Post Method=>",list.value)
 
         var putuser = await myService.putlist()
         console.log("Put Method=>", putuser)

@@ -5,6 +5,9 @@ import About from "../views/About.vue";
 import Login from "../views/Login.vue";
 import Service from "../views/Service.vue";
 import AddUser from "../views/AddUser.vue";
+import ParentComponent from "@/components/ParentComponent.vue"
+import ChildComponent from "@/components/ChildComponent.vue"
+
 
 const routes = [
   {
@@ -38,8 +41,18 @@ const routes = [
         path: "/adduser",
         name: "AddUser",
         component: AddUser,
-      }
-    ],
+      },
+      {
+        path: "/parentcomponent",
+        name: "ParentComponent",
+        component: ParentComponent,
+      },
+      {
+        path: "/childcomponent",
+        name: "ChildComponent",
+        component: ChildComponent,
+      },
+     ],
   },
 ];
 
