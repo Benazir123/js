@@ -1,6 +1,7 @@
 import { getGlobalThis } from "@vue/shared"
 import axios from "axios"
-import AddUser from "../views/AddUser.vue"
+// import AddUser from "../views/AddUser.vue"
+import { useRoute } from 'vue-router'
 
 export default{
     //for get users
@@ -14,10 +15,14 @@ export default{
 
         //for post users
         async postlist(){
+               const route = useRoute()
+                const id = route.params.id
+                const name = route.params.name
+                const email = route.params.email
             const post = {
-                     id: "",
-                     name: "",
-                     email: "",
+                  id,
+                  name,
+                  email
                  };
             const response = await axios.post("https://jsonplaceholder.typicode.com/users", post)
             .then((response) => {

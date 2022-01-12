@@ -2,7 +2,7 @@
 <template>
     <div>
         <ChildComponent @messageFromChild="childMessageRecieved"/>
-         message from child "{{printmessage}}"
+        <h3>Message from child "{{printmessage}}"</h3>
     </div>
 </template>
 
@@ -26,6 +26,15 @@ export default {
      },
 };
 </script>
+
+<style scoped>
+  h3{
+      margin: auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+  }
+</style>
 
 <!--
 <template>

@@ -115,8 +115,8 @@ import AddUser from "../views/AddUser.vue";
         list.value = await myService.userlist()
         console.log("Get Method=>", list.value)
         
-        list.value = await myService.postlist()
-        console.log("Post Method=>",list.value)
+        var postusers = await myService.postlist()
+        console.log("Post Method=>",postusers)
 
         var putuser = await myService.putlist()
         console.log("Put Method=>", putuser)

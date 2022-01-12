@@ -4,13 +4,13 @@
 	</div>
 	<div class="container">
         <div>
-		    <input type="text" name="userId" id="userId" v-model="userId" placeholder="Id" required>
+		    <input type="text" name="userId"  v-model="id" placeholder="Id" required>
 		</div>
 		<div>
-			<input type="text" name="username" id="userName" v-model="userName" placeholder="Name" required>
+			<input type="text" name="username"  v-model="name" placeholder="Name" required>
 		</div>
 		<div>
-        <input type="email" name="email" id="userEmail" v-model="userEmail" placeholder="Email" required>
+        <input type="email" name="email"  v-model="email" placeholder="Email" required>
 		</div>
 		<div>
 			<input type="submit" name="submit" id="addBtn" @click="submitFunc()" class="btn btn-success" value="Add">
@@ -22,25 +22,25 @@
 export default {
 	name: "AddUser",
 	data: () => ({
-         userId: "",
-		 userName: "",
-		 userEmail: "",
-		 allDetails: []
+         id: "",
+		 name: "",
+		 email: "",
+		 allDetails: {}
 	}),
 	methods: {
          submitFunc() {
-			  this.allDetails.push({
-				  userId: this.userId,
-				  userName: this.userName,
-				  userEmail: this.userEmail, 
-				  });
+		      this.allDetails = {
+                      id: this.id,
+					  name: this.name,
+					  email: this.email,
+				   }
 				  console.log("alldetails", this.allDetails)
 				  this.clearForm();
 		 },
 		 clearForm(){
-			 this.userId = "";
-			 this.userName = "";
-			 this.userEmail = "";
+			 this.id = "";
+			 this.name = "";
+			 this.email = "";
           },
 	},
 };
