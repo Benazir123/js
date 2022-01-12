@@ -1,5 +1,6 @@
 import { getGlobalThis } from "@vue/shared"
 import axios from "axios"
+import AddUser from "../views/AddUser.vue"
 
 export default{
     //for get users
