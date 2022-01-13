@@ -11,7 +11,7 @@
         var user = await myService.userlist()
         console.log("Get Method=>", user)
         
-        var postuser = await myService.postlist()
+        var postuser = await myService.postlist(FormData)
         console.log("Post Method=>", postuser)
 
         var putuser = await myService.putlist()

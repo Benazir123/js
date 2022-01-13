@@ -19,31 +19,33 @@
 </template>
 
 <script>
+import myService from "../services/myService"
 export default {
-	name: "AddUser",
-	data: () => ({
-         id: "",
-		 name: "",
-		 email: "",
-		 allDetails: {}
-	}),
-	methods: {
-         submitFunc() {
-		      this.allDetails = {
-                      id: this.id,
-					  name: this.name,
-					  email: this.email,
-				   }
-				  console.log("alldetails", this.allDetails)
-				  this.clearForm();
-		 },
-		 clearForm(){
-			 this.id = "";
-			 this.name = "";
-			 this.email = "";
-          },
+ name: "AddUser",
+ data:() => ({
+	  id: "",
+	  name: "",
+	  email: "",
+	  allDetails: {},
+ }),
+ methods:{
+          submitFunc(){
+			 const allDetails = {
+				  id: this.id,
+				  name: this.name,
+				  email: this.email,
+			  }
+			  console.log("alldetails", allDetails)
+			  var formData = myService.postlist(allDetails);
+			//   console.log("formdata", formData)
+			  return{
+				  formData,
+				  allDetails
+			  }
+		  },
 	},
-};
+	
+}
 </script>
 
 

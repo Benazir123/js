@@ -126,7 +126,7 @@ import AddUser from "../views/AddUser.vue";
           listusers,
           list,
           show,
-          addUser
+          addUser,
        }
      }
      
