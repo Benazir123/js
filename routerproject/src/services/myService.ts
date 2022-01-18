@@ -4,7 +4,7 @@ import axios from "axios"
 export default{
     //for get users
        async userlist(){
-           const response = await axios.get("https://jsonplaceholder.typicode.com/users")
+           const response = await axios.get("https://jsonplaceholder.typicode.com/posts?page=1&limit=30")
             .then((response) => {
                 return response.data
         });
@@ -14,11 +14,12 @@ export default{
         //for post users
         async postlist(FormData: any){
             const post = {
-                   id: FormData.id, 
-                  name: FormData.name, 
-                  email: FormData.email, 
+                   userId: FormData.userId, 
+                  title: FormData.title, 
+                  body: FormData.body, 
                  };
-            const response = await axios.post("https://jsonplaceholder.typicode.com/users", post)
+                 console.log("FormData",FormData);
+            const response = await axios.post("https://jsonplaceholder.typicode.com/posts", post)
             .then((response) => {
                return response.data
             });
@@ -32,10 +33,22 @@ export default{
                      name: "arun",
                      email: "arun@gmail.com"
                  };
-            const response = await axios.put("https://jsonplaceholder.typicode.com/users/3", put)
+            const response = await axios.put("https://jsonplaceholder.typicode.com/posts/3", put)
             .then((response) => {
                return response.data
             });
             return response
         },
+         instanceList(){
+            const instance = axios.create({
+                baseURL :"https://salixv3qa.radiusdirect.net/coreapi",
+                headers:{
+                  Authorization: "",
+                  "Content-Type": "application.json"
+                }
+           })
+           return instance
+        },
+       
+       
 }

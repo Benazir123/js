@@ -16,11 +16,6 @@ const routes = [
     component: Service,
   },
   {
-    path: "/login",
-    name: "Login",
-    component: Login,
-  },
-  {
     path: "/",
     name: "LayoutComponent",
     component: LayoutComponent,
@@ -51,6 +46,11 @@ const routes = [
         path: "/childcomponent",
         name: "ChildComponent",
         component: ChildComponent,
+      },
+      {
+        path: "/login",
+        name: "Login",
+        component: Login,
       },
      ],
   },

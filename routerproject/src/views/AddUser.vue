@@ -2,15 +2,18 @@
     <div>
         	<h1>Add User</h1>
 	</div>
+	<div>
+        <button @click="goBack()" class="btn btn-outline-primary">Go Back</button>
+    </div>
 	<div class="container">
         <div>
-		    <input type="text" name="userId"  v-model="id" placeholder="Id" required>
+		    <input type="text" name="userId"  v-model="userId" placeholder="Id" required>
 		</div>
 		<div>
-			<input type="text" name="username"  v-model="name" placeholder="Name" required>
+			<input type="text" name="title"  v-model="title" placeholder="Title" required>
 		</div>
 		<div>
-        <input type="email" name="email"  v-model="email" placeholder="Email" required>
+        <input type="text" name="content"  v-model="body" placeholder="Content" required>
 		</div>
 		<div>
 			<input type="submit" name="submit" id="addBtn" @click="submitFunc()" class="btn btn-success" value="Add">
@@ -20,32 +23,36 @@
 
 <script>
 import myService from "../services/myService"
-export default {
- name: "AddUser",
- data:() => ({
-	  id: "",
-	  name: "",
-	  email: "",
-	  allDetails: {},
- }),
- methods:{
-          submitFunc(){
+export default { 
+	  inheritAttrs: true,
+	name: "AddUser",
+	setup(props, {emit}) {
+		const goBack = () => {
+		emit("backtohome")
+		 }
+		 return{
+			 goBack,
+		 }
+	},
+methods:{
+    submitFunc(){
 			 const allDetails = {
-				  id: this.id,
-				  name: this.name,
-				  email: this.email,
+				  userId: this.userId,
+				  title: this.title,
+				  body: this.body,
 			  }
 			  console.log("alldetails", allDetails)
 			  var formData = myService.postlist(allDetails);
 			//   console.log("formdata", formData)
 			  return{
 				  formData,
-				  allDetails
+				  allDetails,
 			  }
 		  },
 	},
+
 	
-}
+};
 </script>
 
 
@@ -109,5 +116,9 @@ export default {
    	  	border-radius: 3px;
    	  	width: 100%;
    	  }
+      
+	   button{
+       width: 100px;
+   }
 
 </style>

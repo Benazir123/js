@@ -75,23 +75,24 @@ p {
           <table class="table table-stripped">
                 <thead>
                 <tr>
-                   <th>Id</th>
-                   <th>Name</th>
-                   <th>Email</th>
+                   <!-- <th>Id</th> -->
+                   <th>Title</th>
+                   <th>Content</th>
                 </tr>
                 </thead>
                 <tbody> 
                   <tr v-for="(user,index) in list" :key="index">
-                    <td>{{user.id}}</td>
-                    <td>{{user.name}}</td>
-                    <td>{{user.email}}</td>
+                    <!-- <td>{{user.userId}}</td> -->
+                    <td>{{user.title}}</td>
+                    <td>{{user.body}}</td>
+                    <!-- <td>{{user.email}}</td> -->
                   </tr>
                 </tbody>
          </table> 
          </div> 
     </div>
      <div v-if="show">
-         <AddUser/>
+         <AddUser @backtohome="renderhome()"/>
     </div>
 </template>
 
@@ -109,14 +110,18 @@ import AddUser from "../views/AddUser.vue";
              show.value = true
              console.log("add", show.value)
       }
+     const renderhome = () => {
+         show.value = false
+        listusers()
+      }
       const show = ref(false)
       const list = ref()
         async function listusers() {
         list.value = await myService.userlist()
         console.log("Get Method=>", list.value)
         
-        var postusers = await myService.postlist()
-        console.log("Post Method=>",postusers)
+        // var postusers = await myService.postlist()
+        // console.log("Post Method=>",postusers)
 
         var putuser = await myService.putlist()
         console.log("Put Method=>", putuser)
@@ -127,6 +132,7 @@ import AddUser from "../views/AddUser.vue";
           list,
           show,
           addUser,
+          renderhome
        }
      }
      
