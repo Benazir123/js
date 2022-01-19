@@ -11,6 +11,11 @@ import ChildComponent from "@/components/ChildComponent.vue"
 
 const routes = [
   {
+    path: "/login",
+    name: "Login",
+    component: Login,
+  },
+  {
     path: "/service",
     name: "Service",
     component: Service,
@@ -46,11 +51,6 @@ const routes = [
         path: "/childcomponent",
         name: "ChildComponent",
         component: ChildComponent,
-      },
-      {
-        path: "/login",
-        name: "Login",
-        component: Login,
       },
      ],
   },

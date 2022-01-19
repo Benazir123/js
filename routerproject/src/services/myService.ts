@@ -1,11 +1,11 @@
 import { getGlobalThis } from "@vue/shared"
-import axios from "axios"
+import axios from  "./index"
 // import AddUser from "../views/AddUser.vue"
 export default{
     //for get users
        async userlist(){
-           const response = await axios.get("https://jsonplaceholder.typicode.com/posts?page=1&limit=30")
-            .then((response) => {
+           const response = await axios().get("https://jsonplaceholder.typicode.com/posts?page=1&limit=30")
+            .then((response :any) => {
                 return response.data
         });
         return response
@@ -19,8 +19,8 @@ export default{
                   body: FormData.body, 
                  };
                  console.log("FormData",FormData);
-            const response = await axios.post("https://jsonplaceholder.typicode.com/posts", post)
-            .then((response) => {
+            const response = await axios().post("https://jsonplaceholder.typicode.com/posts", post)
+            .then((response: any) => {
                return response.data
             });
             return response
@@ -33,22 +33,31 @@ export default{
                      name: "arun",
                      email: "arun@gmail.com"
                  };
-            const response = await axios.put("https://jsonplaceholder.typicode.com/posts/3", put)
-            .then((response) => {
+            const response = await axios().put("https://jsonplaceholder.typicode.com/posts/3", put)
+            .then((response: any) => {
                return response.data
             });
             return response
         },
-         instanceList(){
-            const instance = axios.create({
-                baseURL :"https://salixv3qa.radiusdirect.net/coreapi",
-                headers:{
-                  Authorization: "",
-                  "Content-Type": "application.json"
-                }
-           })
-           return instance
+        //for login api
+        async loginPost(LoginData: any){
+           const postData = {
+                 email: LoginData.email,
+                 password: LoginData.password,
+            };
+            console.log("LoginData=>", LoginData);
+            const response = await axios().post("/clientAdminLogin" , postData)
+            .then((response: any) => {
+                  return response.data
+            });
+            console.log("response", response)
+            // this.setToken(response)
+            return response
         },
-       
-       
+       setToken(response: any){
+           if(response && response.token){
+            localStorage.setItem( "access_token" ,response.token)
+        }
+    },
+
 }
