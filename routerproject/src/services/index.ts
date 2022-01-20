@@ -11,9 +11,6 @@ export default() => {
              options.headers.Authorization = "Bearer " + localStorage.getItem("access_token") as any
        }
        const instance = axios.create(options)
-       console.log('create instance option',options)
-
-       console.log('create instance',instance)
        return instance
     }
    

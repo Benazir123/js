@@ -39,6 +39,7 @@ export default{
             });
             return response
         },
+
         //for login api
         async loginPost(LoginData: any){
            const postData = {

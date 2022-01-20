@@ -10,14 +10,14 @@
     <input type="text" name="name" id="name" placeholder="Enter your name" required/>
   </div> -->
   <div>
-    <input type="email" name="email" id="email" v-model="email" placeholder="Enter your email" pattern="/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/;" required/>
+    <input type="email" name="email" id="email" v-model="email" placeholder="Enter your email" @keyup="validateEmail()" required/>
     <span v-if="email == '' && submitValidation == true">Email is required</span>
-    <span v-if="email != pattern && emailValidation == true && submitValidation == false">Please enter a valid email address</span>
+    <span v-if="!RegEmail && email !== '' ">Enter a valid email address</span>
   </div>
   <div>
-    <input type="password" name="password" id="password" v-model="password" placeholder="Enter password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required/>
+    <input type="password" name="password" id="password" v-model="password" placeholder="Enter password" @keyup="validatePassword()" required/>
     <span v-if="password == '' && submitValidation == true">Password is required</span>
-    <span v-if="password !== pattern && passwordValidation == true && submitValidation == false">Password must contain atleast one number,one uppercase and one lowercase, And atleast 8 or more characters</span>
+    <span v-if="!RegPassword && password !== '' ">Password should be minimum 6 characters</span>
   </div>
   <div>
     <button type="submit" @click="loginFunction()" class="btn btn-success" name="login">Login</button>
@@ -25,42 +25,63 @@
 </template>
 
 <script>
+import myService from '@/services/myService';
+import { useRouter } from 'vue-router';
 
-// import myService from "../services/myService"
 export default {
-
-    name: "Login",
+   name: "Login",
     data(){
-      return{
-        emailValidation: false,
-        passwordValidation: false,
+    let regexEmail = new RegExp('[a-z0-9]+@[a-z]+.[a-z]{2,3}');
+    let regexPassword = new RegExp('[a-z0-9A-Z].{6,}');
+    let RegEmail = Boolean;
+    let RegPassword = Boolean;
+     let router = useRouter();
+    return{
+        regexEmail,
+        regexPassword,
+        RegEmail,
+        RegPassword,
+         router,
         submitValidation : false,
          email: '',
          password: '',
+         msg: '',
       }
     },
     methods:{
-        loginFunction(){
+       async loginFunction(){
+       
           this.submitValidation = true
-          this.passwordValidation = true
-          this.emailValidation = true
           const loginDetails = {
                  email: this.email,
                  password: this.password,
            }
            console.log("loginDetails=>", loginDetails)
-          //  var storedValue =  myService.loginPost(loginDetails)
-          // console.log("storedValue", storedValue)
-          //  if(storedValue.apiStatus == true){
-          //     myService.setToken(storedValue)
-          //  }
-         }
+       if((this.email !== '' && this.RegEmail == true) && 
+                     (this.password !== '' && this.RegPassword == true)){
+                  var storedValue = await myService.loginPost(loginDetails)
+                  console.log("storedValue", storedValue)
+             }
+           if(storedValue && storedValue.apiStatus == true){
+               this.router.push("/")
+              console.log("router")
+              myService.setToken(storedValue)
+              
+          }
+         },
+       validateEmail(){
+       this.RegEmail =  this.regexEmail.test(this.email) 
+        console.log("RegEmail", this.RegEmail)
+      },
+      validatePassword(){
+        this.RegPassword = this.regexPassword.test(this.password)
+          console.log("RegPassword", this.RegPassword)
+      },
 
-    },
-    created() {
+},
+
+created() {
        this.submitValidation = false
-       this.emailValidation = false
-       this.passwordValidation = false
     },
 }
 </script>

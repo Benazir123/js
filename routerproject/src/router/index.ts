@@ -8,12 +8,12 @@ import AddUser from "../views/AddUser.vue";
 import ParentComponent from "@/components/ParentComponent.vue"
 import ChildComponent from "@/components/ChildComponent.vue"
 
-
 const routes = [
   {
     path: "/login",
     name: "Login",
     component: Login,
+    
   },
   {
     path: "/service",
@@ -60,5 +60,15 @@ const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes,
 });
+
+router.beforeEach((to, from, next) => {
+  if (to.name !== 'Login' && !Login.storedValue) next({ name: 'Home' })
+  else next()
+})
+
+router.afterEach((to, from) => {
+  if(to.name == "Login") 
+  else from 
+})
 
 export default router;
