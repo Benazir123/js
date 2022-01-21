@@ -7,13 +7,39 @@ import Service from "../views/Service.vue";
 import AddUser from "../views/AddUser.vue";
 import ParentComponent from "@/components/ParentComponent.vue"
 import ChildComponent from "@/components/ChildComponent.vue"
+import LiveSession from "../views/LiveSession.vue";
+import Ticket from "../views/Ticket.vue";
+
+
+
+// function guardMyroute(to: any, from: any, next: any)
+// {
+//  let isAuthenticated= false;
+//  const loggedUser = localStorage.getItem('access_token')
+//  console.log("getitem",loggedUser)
+//  if(loggedUser && loggedUser !== '')
+//      isAuthenticated = true;
+//  else
+//   isAuthenticated= false;
+//   console.log("isauthenticated",isAuthenticated);
+  
+//  if(isAuthenticated) 
+//  {
+//   next('/'); // allow to enter route
+//  } 
+// //  else
+// //  {
+// //   next('/login'); // go to '/login';
+// //  }
+// }
+// console.log("guardMyroute", guardMyroute)
 
 const routes = [
   {
     path: "/login",
     name: "Login",
     component: Login,
-    
+    // beforeEnter: guardMyroute,
   },
   {
     path: "/service",
@@ -52,6 +78,16 @@ const routes = [
         name: "ChildComponent",
         component: ChildComponent,
       },
+      {
+        path: "/livesession",
+        name: "LiveSession",
+        component: LiveSession,
+      },
+      {
+        path: "/ticket",
+        name: "Ticket",
+        component: Ticket,
+      },
      ],
   },
 ];
@@ -62,13 +98,15 @@ const router = createRouter({
 });
 
 router.beforeEach((to, from, next) => {
-  if (to.name !== 'Login' && !Login.storedValue) next({ name: 'Home' })
-  else next()
-})
-
-router.afterEach((to, from) => {
-  if(to.name == "Login") 
-  else from 
-})
+  let isAuthenticated = '' as any
+ isAuthenticated = localStorage.getItem('access_token')
+ console.log('isauthenticated',to.name)
+ if(to.name !== 'Login' && !isAuthenticated){
+  next('/login')
+ }
+if (to.name == 'Login' && isAuthenticated && isAuthenticated != '') 
+next({name : 'Home'})
+else next()
+ })
 
 export default router;

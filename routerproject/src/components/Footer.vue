@@ -12,6 +12,6 @@ footer {
   width: 100%;
   /* Height of the footer*/
   height: 50px;
-  background: grey;
+  background: rgb(92, 92, 92);
 }
 </style>

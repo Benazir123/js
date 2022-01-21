@@ -4,7 +4,7 @@ import axios from  "./index"
 export default{
     //for get users
        async userlist(){
-           const response = await axios().get("https://jsonplaceholder.typicode.com/posts?page=1&limit=30")
+           const response = await axios().post("https://salixv3qa.radiusdirect.net/coreapi/v2/listEngagementForAdminNew")
             .then((response :any) => {
                 return response.data
         });
