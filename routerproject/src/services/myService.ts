@@ -3,17 +3,16 @@ import axios from  "./index"
 // import AddUser from "../views/AddUser.vue"
 export default{
     //for get users
-       async userlist(){
-           const response = await axios().post("https://salixv3qa.radiusdirect.net/coreapi/v2/listEngagementForAdminNew")
+       async userlist(postValue: any){
+           const response = await axios().post("https://salixv3qa.radiusdirect.net/coreapi/v2/listEngagementForAdminNew",postValue)
             .then((response :any) => {
                 return response.data
         });
-        return response
+        return response 
         },
-
-        //for post users
+         //for post users
         async postlist(FormData: any){
-            const post = {
+            const post = {   
                    userId: FormData.userId, 
                   title: FormData.title, 
                   body: FormData.body, 

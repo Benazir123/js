@@ -102,6 +102,9 @@ p {
          </table> 
          </div> 
     </div>
+    <div>
+       <Pagination v-model="page" :records="10" :per-page="3"  @paginate="pageChangeEvent($event)"/>
+    </div>
      <div v-if="show">
          <AddUser @backtohome="renderhome()"/>
     </div>
@@ -113,11 +116,24 @@ import myService from "../services/myService";
 import { onMounted } from '@vue/runtime-core';
 import AddUser from "../views/AddUser.vue"; 
 import moment from "moment"
+import Pagination from 'v-pagination-3'
  export default {
       components: {
-        AddUser
+        AddUser,
+        Pagination
       },
     setup(){ 
+      const page = ref(1)
+      const postValue = {
+        page: page.value,
+        limit: 3
+      },
+        pageChangeEvent = (event) => {
+            postValue.page = event
+           listusers(postValue)
+
+           console.log("params",event)
+       }
      const dateFormat = (value) => {
            if(value){
               return moment(String(value)).format("MMM DD,yyyy h:mm A")
@@ -134,8 +150,8 @@ import moment from "moment"
       const show = ref(false)
       var list = new Array
        const listArray = ref()
-        async function listusers(){
-        list = await myService.userlist()
+        async function listusers(postValue){
+        list = await myService.userlist(postValue)
         listArray.value = list.result
        console.log("Get Method=>", listArray.value)
         
@@ -153,8 +169,10 @@ import moment from "moment"
           addUser,
           renderhome,
           listArray,
-          dateFormat
-       }
+          dateFormat,
+          pageChangeEvent,
+          page,
+        }
      }
      
     }
@@ -167,6 +185,7 @@ import moment from "moment"
 	border-radius: 8px;
 	margin-right: 10px;
 }
+
 </style>
 
 

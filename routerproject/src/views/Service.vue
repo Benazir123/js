@@ -8,7 +8,7 @@
 
   export default {
       async  mounted() {
-        var user = await myService.userlist()
+        var user = await myService.userlist(FormData)
         console.log("Get Method=>", user)
         
         var postuser = await myService.postlist(FormData)
