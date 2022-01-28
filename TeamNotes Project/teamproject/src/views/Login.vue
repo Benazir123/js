@@ -1,4 +1,18 @@
 <template>
+ <header>
+    <nav class="navbar navbar-expand-lg navbar shadow bg-white">
+      <a class="navbar-brand ms-5" href="https://www.novastrid.com" target="_blank">
+        NovaStrid.com
+      </a>
+    </nav>
+  </header>
+
+  <div class="section">
+      <div id="myImage">
+         <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"  alt="" target="-blank">
+      </div>
+  </div>
+
      <div>
          <center>
          <h1><b>Login</b></h1>
@@ -16,44 +30,27 @@
              <span v-if="!RegPassword && password !== ''">Password should be minimum 6 characters</span>
          </div>
          <div>
-            <button type="submit" class="btn btn-outline-dark" @click="loginFunction()">Login</button>
+            <button type="submit" class="btn btn-dark" @click="loginFunction()">Login</button>
          </div>
         <h5>OR</h5>
-        <input type="submit" @click="handleClickSignIn" class="border-2 border-black" value="Sign In with Google"/>
-           <!-- <g-signin-button @success="OnSignInSuccess" @error="OnSignInerror">Sign in with Google</g-signin-button>  -->
+        <button @click="handleClickSignIn" class="border-1 border-black hover:bg-gray-200"><i class="fab fa-google"></i>
+         <!-- <img class="h-5 w-5 ml-10 mt-2 " alt="Google sign-in" 
+        src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png" /> -->
+      Sign In with Google
+        </button>
          </div>
 </template>
 
-<!--
 <script>
-import GSignInButton from 'vue-google-signin'
-Vue.use(GSignInButton)
+import { useRouter } from 'vue-router'
 
-export default{
-     setup() {
-        const OnSignInSuccess = (googleUser) => {
-              profile = googleUser.getBasicProfile() 
-        }
-        const OnSignInerror = () => {
-            console.log("OH NOES", error)
-        }
-        return{
-            OnSignInSuccess,
-            OnSignInerror,
-            profile
-            
-        }
-    },
-}
-</script>
--->
-<script>
 export default {
     data() {
         let regexEmail = new RegExp('[a-z0-9]+@[a-z]+.[a-z]{2,3}')
         let regexPassword =  new RegExp('[a-z0-9A-Z].{6,}')
         let RegEmail = Boolean
         let RegPassword = Boolean
+        let router = useRouter();
         return {
             submitValidation : false,
             email: '',
@@ -62,6 +59,7 @@ export default {
             regexPassword,
             RegEmail,
             RegPassword,
+            router,
               params: {
                     client_id: "xxxxxx"
                 },
@@ -81,6 +79,15 @@ export default {
                   password: this.password
              }
              console.log("Login Details=>", loginDetails)
+             if((this.email !== '' && this.RegEmail == true) && 
+                     (this.password !== '' && this.RegPassword == true)){
+                        localStorage.setItem("loginDetails",JSON.stringify(loginDetails))
+                       
+                            //  this.router.push("/")
+                    }
+                     if(localStorage.getItem("loginDetails") !== null ){
+                               this.router.push("/")
+                     }
          },
          validateEmail(){
              this.RegEmail = this.regexEmail.test(this.email)
@@ -88,20 +95,26 @@ export default {
          validatePassword(){
                this.RegPassword =this.regexPassword.test(this.password)
          },
-        async handleClickSignIn(){
+    async handleClickSignIn(){
       try {
         const googleUser = await this.$gAuth.signIn();
         if (!googleUser) {
           return null;
         }
+
         console.log("googleUser", googleUser);
-      } catch (error) {
+        var profile  = googleUser.getBasicProfile().getEmail()
+        console.log("getId", profile)
+        console.log("getBasicProfile", googleUser.getBasicProfile())
+        console.log("getAuthResponse", googleUser.getAuthResponse())
+        console.log("getAuthResponse",this.$gAuth.instance.currentUser.get().getAuthResponse());
+        }catch (error) {
         //on fail do something
-        console.error(error);
+        console.error("OH NOES",error);
         return null;
       }
-    },
-    },
+    }
+},
 
     created() {
         this.submitValidation = false
@@ -122,11 +135,10 @@ export default {
       border-color: black;
  }
 
- button{
+ .btn{
      margin-left: 100px;
      width: 30%;
-     border-radius: 100%;
- }
+    }
 
  #p1{
     margin-left: 45%;
@@ -153,19 +165,17 @@ span{
     color: red;
 }
 
-        /* img {
-            height: 100px;
-            width: 100px;
-            border-radius: 50%;
-        } */
-
- /* .google-signin-button {
-  color: white;
-  background-color: rgb(104, 152, 207);
-  height: 50px;
-  font-size: 16px;
-  border-radius: 10px;
-  padding: 10px 20px 25px 20px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-} */
+ img{
+      width: 100%;
+      height: 520px;
+      align-items: center;
+ }
+.section{
+   float: left;
+   width: 75%;
+ }
+.right{
+    float: left;
+    width: 25%;
+ }
 </style>

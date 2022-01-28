@@ -11,13 +11,13 @@ import { dom } from "@fortawesome/fontawesome-svg-core";
 dom.watch();
 
 import './css/tailwind.css'
-import GAuth from 'vue3-google-oauth2';
-const gAuth = { clientId: '1088670528535-mfm1nbil4fgn3fmd7pvl10vf252br8n8.apps.googleusercontent.com', scope: 'email', prompt: 'consent', fetch_basic_profile: false }
+import gAuthPlugin from 'vue3-google-oauth2';
+const gauthClientId = "1088670528535-mfm1nbil4fgn3fmd7pvl10vf252br8n8.apps.googleusercontent.com"
 
 library.add(fas);
 library.add(fab);
 library.add(far);
-createApp(App).use(store).component("font-awesome-icon", FontAwesomeIcon).use(router).use(GAuth, gAuth).mount("#app");
+createApp(App).use(store).component("font-awesome-icon", FontAwesomeIcon).use(router).use(gAuthPlugin, { clientId: gauthClientId, scope: 'email', prompt: 'consent', fetch_basic_profile: false }).mount("#app");
 
 //bootstrap
 import "bootstrap/dist/css/bootstrap.min.css";
