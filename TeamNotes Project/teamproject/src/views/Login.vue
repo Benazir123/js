@@ -13,35 +13,35 @@
       </div>
   </div>
 
-     <div>
-         <center>
+    <div>
+    <center>
          <h1><b>Login</b></h1>
-        
          <p>Click below to Login <i class="fas fa-user"></i></p>
-         </center>
-         <div>
-             <input type="email" class="border-2 border-black bg-white" v-model="email" @keyup="validateEmail()" name="email" id="email" placeholder="Enter Your Email Address" required>
-             <span v-if="email == '' && submitValidation == true">Email is required</span>
-             <span v-if="!RegEmail && email !== '' ">Enter a valid email address</span>
-         </div>
-         <div>
-             <input type="password" class="border-2 border-black bg-white" v-model="password" @keyup="validatePassword()" name="password" id="password" placeholder="Enter Your Password" required>
-             <span v-if="password == '' && submitValidation == true">Password is required</span>
-             <span v-if="!RegPassword && password !== ''">Password should be minimum 6 characters</span>
-         </div>
-         <div>
-            <button type="submit" class="btn btn-dark" @click="loginFunction()">Login</button>
-         </div>
+    </center>
+    <div>
+        <input type="email" class="border-2 border-black bg-white" v-model="email" @keyup="validateEmail()" name="email" id="email" placeholder="Enter Your Email Address" required>
+        <span v-if="email == '' && submitValidation == true">Email is required</span>
+        <span v-if="!RegEmail && email !== '' ">Enter a valid email address</span>
+    </div>
+    <div>
+        <input type="password" class="border-2 border-black bg-white" v-model="password" @keyup="validatePassword()" name="password" id="password" placeholder="Enter Your Password" required>
+        <span v-if="password == '' && submitValidation == true">Password is required</span>
+        <span v-if="!RegPassword && password !== ''">Password should be minimum 6 characters</span>
+    </div>
+    <div>
+          <button type="submit" class="btn btn-dark" @click="loginFunction()">Login</button>
+    </div>
         <h5>OR</h5>
-        <button @click="handleClickSignIn" class="border-1 border-black hover:bg-gray-200"><i class="fab fa-google"></i>
+    <button @click="handleClickSignIn" class="border-1 border-black hover:bg-gray-200"><i class="fab fa-google"></i> 
          <!-- <img class="h-5 w-5 ml-10 mt-2 " alt="Google sign-in" 
         src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png" /> -->
-      Sign In with Google
-        </button>
-         </div>
-</template>
+        Sign In with Google</button>
+    </div>
+  </template>
+
 
 <script>
+  import firebase from "firebase"
 import { useRouter } from 'vue-router'
 
 export default {
@@ -60,15 +60,6 @@ export default {
             RegEmail,
             RegPassword,
             router,
-              params: {
-                    client_id: "xxxxxx"
-                },
-                // only needed if you want to render the button with the google ui
-                renderParams: {
-                    width: 250,
-                    height: 50,
-                    longtitle: true
-                }
         }
     },
     methods: {
@@ -81,13 +72,25 @@ export default {
              console.log("Login Details=>", loginDetails)
              if((this.email !== '' && this.RegEmail == true) && 
                      (this.password !== '' && this.RegPassword == true)){
+                       firebase.auth().signInWithEmailAndPassword(this.email, this.password)
+                       .then((data) => {
+                         console.log("data",data)
+                            console.log("Successfully logged in!")
+                           // alert("Successfully logged in!")
                         localStorage.setItem("loginDetails",JSON.stringify(loginDetails))
+                            this.router.push("/")
+                       })
+                       .catch((error) => {
+                          console.log(error.code)
+                          alert(error.message)
+                       })
+                        //localStorage.setItem("loginDetails",JSON.stringify(loginDetails))
                        
                             //  this.router.push("/")
                     }
-                     if(localStorage.getItem("loginDetails") !== null ){
+                     /*if(localStorage.getItem("loginDetails") !== null ){
                                this.router.push("/")
-                     }
+                     }*/
          },
          validateEmail(){
              this.RegEmail = this.regexEmail.test(this.email)
@@ -179,3 +182,55 @@ span{
     width: 25%;
  }
 </style>
+
+<!--
+<script setup>
+  import { ref } from 'vue'
+  import firebase from 'firebase'
+  import { useRouter } from 'vue-router'
+  const regexEmail = new RegExp('[a-z0-9]+@[a-z]+.[a-z]{2,3}')
+  const regexPassword =  new RegExp('[a-z0-9A-Z].{6,}')
+  const RegEmail = ref(true)
+  const RegPassword = ref(true)
+  const email = ref('')
+  const password = ref('')
+  const router = useRouter() 
+  const submitValidation = ref(true)
+  const validateEmail = () => {
+      RegEmail.value = regexEmail.test(email.value)
+  }
+  const validatePassword = () => {
+      RegPassword.value = regexPassword.test(password.value)
+  }
+  const signIn = () => { 
+        submitValidation.value = true
+    if((email.value !== '' && RegEmail.value == true) && 
+                     (password.value !== '' && RegPassword.value == true)){
+           
+}
+    firebase
+      .auth()
+      .signInWithEmailAndPassword(email.value, password.value) 
+      .then((data) => {
+        console.log('Successfully logged in!');
+        router.push('/') 
+      })
+      .catch(error => {
+        console.log(error.code)
+        alert(error.message);
+      });
+      return{
+        signIn,
+        RegEmail,
+        RegPassword,
+        regexEmail,
+        regexPassword,
+        validateEmail,
+        validatePassword,
+        submitValidation
+      }
+      
+  }
+</script>
+-->
+ 
