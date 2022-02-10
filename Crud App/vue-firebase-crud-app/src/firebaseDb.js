@@ -1,8 +1,6 @@
-import  * as firebase from 'firebase/app';
-import 'firebase/firestore';
-import { initializeApp } from "firebase/app"
-import { getFirestore } from "firebase/firestore";
-
+// v9 compat packages are API compatible with v8 code
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/firestore';
 
 const firebaseConfig = {
     apiKey: "AIzaSyAJ33pXrboltF0rpklK9ofEnpZt_cpHkA8",
@@ -13,9 +11,6 @@ const firebaseConfig = {
     appId: "1:396232212448:web:52b3185c170e5256dfb585",
     measurementId: "G-Z61H13E6X2"
   };
-  const app = initializeApp(firebaseConfig)
 
-
-const firebaseApp = firebase.app
-export const db = getFirestore(firebaseApp);
-// export const db = firebaseApp.firestore()
+const firebaseApp = firebase.initializeApp(firebaseConfig);
+export const db = firebaseApp.firestore()

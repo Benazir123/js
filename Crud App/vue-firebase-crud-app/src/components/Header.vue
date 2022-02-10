@@ -5,7 +5,7 @@
         <a class="navbar-brand float-left">Firebase Vue CRUD Example</a>
         <ul class="nav navbar-nav flex-row float-right">
           <li class="nav-item">
-            <router-link class="nav-link p-3" to="/add">AddUser</router-link>
+            <router-link class="nav-link p-3" to="/">AddUser</router-link>
           </li>
           <li class="nav-item">
             <router-link class="nav-link p-3" to="/list">ViewUsers</router-link>

@@ -64,163 +64,179 @@ p {
 -->
 
 <template>
-     <div v-if="!show">
-        <div>
-          <h1>EngagementDetails
-            <button type="button" id="addUser" class="btn btn-info mt-3" @click="addUser()">Add User</button>
-          </h1>
-              <!-- <label>Search by Name:</label> -->
-             <input class="form-control w-50" v-model="filters.topic.value" placeholder="Search by Name"/>
-        </div>
-
-          <div class="container"> 
-          <!-- <table class="table table-hover"> -->
-                <!-- <thead> -->
-<VTable :data="listArray"  :filters="filters" class="table table-hover" :page-size="2"
-v-model:currentPage="currentPage" @totalPagesChanged="totalPages = $event" >
-           <template #head>
-                <tr>
-                   <VTh sortKey="name">Meeting Id</VTh>
-                   <VTh sortKey="name">Topic</VTh >
-                   <VTh sortKey="name">Engagement Type</VTh >
-                   <VTh sortKey="name">EO Name</VTh >
-                   <VTh sortKey="name">Speaker Name</VTh >
-                   <VTh sortKey="name">Status</VTh >
-                   <VTh sortKey="name">Date and Time</VTh >
-                </tr>
-                <!-- </thead> -->
-           </template>
-                <!-- <tbody>  -->
-            <template #body>   
-                    <tr  v-for="result in listArray" :key="result.id">
-                    <td>{{result.meeting_id}}</td>
-                    <td>{{result.topic}}</td>
-                    <td>{{result.engagement_type}}</td>
-                    <td>{{result.eo_firstName}}{{result.eo_lastName}}</td>
-                    <td>{{result.spk_firstName}}{{result.spk_lastName}}</td>
-                    <td>{{result.status}}</td>
-                    <td>{{dateFormat(result.createdAt)}}</td>
-                  </tr> 
-               
-                <!-- </tbody> -->
-         <!-- </table>  -->
-        </template>
-          </VTable>
-         </div> 
-<VTPagination v-model:currentPage="currentPage" :total-pages="totalPages" :boundary-links="true" @click="totalPages($event)"/>
-  </div>
-    <!-- <div>
-
-       <Pagination v-model="page" :records="10" :per-page="3"  @paginate="pageChangeEvent($event)"/>
-    </div> -->
-     <div v-if="show">
-         <AddUser @backtohome="renderhome()"/>
+  <div v-if="!show">
+    <div>
+      <h1>
+        EngagementDetails
+        <button
+          type="button"
+          id="addUser"
+          class="btn btn-info mt-3"
+          @click="addUser()"
+        >
+          Add User
+        </button>
+      </h1>
+      <!-- <label>Search by Name:</label> -->
+      <input
+        class="form-control w-50"
+        v-model="filters.topic.value"
+        placeholder="Search by Name"
+      />
     </div>
+
+    <div class="container">
+      <!-- <table class="table table-hover"> -->
+      <!-- <thead> -->
+      <VTable
+        :data="listArray"
+        class="table table-hover"
+        :page-size="5"
+       
+      >
+        <template #head>
+          <tr>
+            <VTh sortKey="name">Meeting Id</VTh>
+            <VTh sortKey="name">Topic</VTh>
+            <VTh sortKey="name">Engagement Type</VTh>
+            <VTh sortKey="name">EO Name</VTh>
+            <VTh sortKey="name">Speaker Name</VTh>
+            <VTh sortKey="name">Status</VTh>
+            <VTh sortKey="name">Date and Time</VTh>
+          </tr>
+          <!-- </thead> -->
+        </template>
+        <!-- <tbody>  -->
+        <template #body>
+          <tr v-for="result in listArray" :key="result.id">
+            <td>{{ result.meeting_id }}</td>
+            <td>{{ result.topic }}</td>
+            <td>{{ result.engagement_type }}</td>
+            <td>{{ result.eo_firstName }}{{ result.eo_lastName }}</td>
+            <td>{{ result.spk_firstName }}{{ result.spk_lastName }}</td>
+            <td>{{ result.status }}</td>
+            <td>{{ dateFormat(result.createdAt) }}</td>
+          </tr>
+
+          <!-- </tbody> -->
+          <!-- </table>  -->
+        </template>
+      </VTable>
+      <!-- <VTPagination
+        v-model:currentPage="currentPage"
+        :total-pages="totalPages"
+        :boundary-links="true"
+        :maxPageLinks="5"
+      /> -->
+    </div>
+  </div>
+  <div class="container pl-5">
+      <Pagination v-model="page"  :records="1379" :per-page="5"    @paginate="pageChangeEvent($event)"/>
+  </div>
+  <div v-if="show">
+    <AddUser @backtohome="renderhome()" />
+  </div>
 </template>
 
 <script>
-import { ref } from '@vue/reactivity';
+import { ref } from "@vue/reactivity";
 import myService from "../services/myService";
-import { onMounted } from '@vue/runtime-core';
-import AddUser from "../views/AddUser.vue"; 
-import moment from "moment"
-// import Pagination from 'v-pagination-3'
- export default {
-     name: 'Pagination',
-     components: {
-        AddUser,
-        // Pagination
-      },
-  data: () => ({
-  filters: {
-    topic: { value: '', keys: ['topic'] }
+import { onMounted } from "@vue/runtime-core";
+import AddUser from "../views/AddUser.vue";
+import moment from "moment";
+import Pagination from 'v-pagination-3'
+export default {
+  name:"Home",
+  // name: "Pagination",
+  components: {
+    AddUser,
+    Pagination
   },
+  data: () => ({
+    filters: {
+      topic: { value: "", keys: ["topic"] },
+    },
     // totalPages:0,
     //  currentPage: 1,
-}),
-    setup(){
-       const currentPage = ref(1)
-       const postValue ={
-          currentPage: currentPage.value,
-          limit: 2
-
-       },
-       totalPages = (event) => {
-              postValue.currentPage = event
-              postValue.limit = postValue.currentPage
-              console.log("params", event)
+  }),
+  setup() {
+     const page = ref(1)
+      const postValue = {
+        page: page.value,
+        limit: 5
+      },
+        pageChangeEvent = (event) => {
+            postValue.page = event
+           listusers(postValue)
+           console.log("params",event)
        }
-        //  pageChangeEvent = (event) => {
-        //    postValue.currentPage = event
-        //    listusers(postValue)
-        //    console.log("params", event)
-        // } 
-  // const page = ref(1)
-      // const postValue = {
-      //   page: page.value,
-      //   limit: 3
-      // },
-      //   pageChangeEvent = (event) => {
-      //       postValue.page = event
-      //      listusers(postValue)
+    // const currentPage = ref(1);
+    // const totalPages = ref(1);
+    // const postValue = {
+    //     page: currentPage.value,
+    //     limit: 5,
+    //   },
+    //  pageChangeEvent = (event) => {
+    //     console.log("pageChangeEvent");
+    //     postValue.page = event;
+    //     listusers(postValue);
 
-      //      console.log("params",event)
-      //  }
-     const dateFormat = (value) => {
-           if(value){
-              return moment(String(value)).format("MMM DD,yyyy h:mm A")
-           }
-     }
-      const addUser = () => {
-             show.value = true
-             console.log("add", show.value)
+    //     console.log("params", event);
+    //   };
+    const dateFormat = (value) => {
+      if (value) {
+        return moment(String(value)).format("MMM DD,yyyy h:mm A");
       }
-     const renderhome = () => {
-         show.value = false
-        listusers()
-      }
-      const show = ref(false)
-      var list = new Array
-       const listArray = ref([])
-        async function listusers(postValue){
-        
-        list = await myService.userlist(postValue)
-        listArray.value = list.result
-       console.log("Get Method=>", listArray.value)
-        
-        // var postusers = await myService.postlist()
-        // console.log("Post Method=>",postusers)
+    };
+    const addUser = () => {
+      show.value = true;
+      console.log("add", show.value);
+    };
+    const renderhome = () => {
+      show.value = false;
+      // console.log("postValue", postValue);
+      listusers();
+    };
+    const show = ref(false);
+    var list = new Array
+    const listArray = ref([]);
+    async function listusers(postValue) {
+      list = await myService.userlist(postValue);
+      listArray.value = list.result;
+      // totalPages.value = list.totalCount;
+       console.log("Get Method=>", listArray.value);
 
-        // var putuser = await myService.putlist()
-        // console.log("Put Method=>", putuser)
-        }
-        onMounted(listusers)
-        return{
-          listusers,
-          list,
-          show,
-          addUser,
-          renderhome,
-          listArray,
-          dateFormat,
-          // pageChangeEvent,
-          // page,
-          currentPage,
-          totalPages
-        }
-     }
-     
+      // var postusers = await myService.postlist()
+      // console.log("Post Method=>",postusers)
+
+      // var putuser = await myService.putlist()
+      // console.log("Put Method=>", putuser)
     }
- </script>
+    onMounted(listusers);
+    return {
+      listusers,
+      list,
+      show,
+      addUser,
+      renderhome,
+      listArray,
+      dateFormat,
+      pageChangeEvent,
+      // currentPage,
+      // totalPages,
+      page,
+    };
+  },
+};
+</script>
 
 <style scoped>
- #addUser{
-	float: right;
-	width: 10%;
-	border-radius: 8px;
-	margin-right: 10px;
+#addUser {
+  float: right;
+  width: 10%;
+  border-radius: 8px;
+  margin-right: 10px;
 }
-
 </style>
 
 

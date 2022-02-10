@@ -1,7 +1,9 @@
 import { createRouter, createWebHistory} from "vue-router";
-import Home from "../views/Home.vue";
 import LayoutComponent from "../layouts/LayoutComponent.vue";
 import UserCreate from "../components/UserCreate.vue"
+import UserList from "../components/UserList.vue"
+import UserEdit from "../components/UserEdit.vue"
+
 
 const routes = [
   {
@@ -11,14 +13,20 @@ const routes = [
     children:[
       {
         path: "/",
-        name: "Home",
-        component: Home,
+        name: "UserCreate",
+        component: UserCreate,
         props: true
       },
       {
-        path: "/add",
-        name: "UserCreate",
-        component: UserCreate,
+        path: "/list",
+        name: "list",
+        component: UserList,
+        props: true
+      },
+      {
+        path: "/edit/:id",
+        name: "edit",
+        component: UserEdit,
         props: true
       },
       {

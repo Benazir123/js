@@ -1,8 +1,8 @@
 <template>
     <div class="row justify-content-center">
         <div class="col-md-5">
-            <h3 class="text-center">Add User</h3>
-            <form @submit.prevent="onFormSubmit">
+            <h3 class="text-center">Update User</h3>
+            <form @submit.prevent="onUpdateForm">
                 <div class="form-group">
                     <label>Name</label>
                     <input type="text" class="form-control" v-model="user.name" required>
@@ -12,46 +12,44 @@
                     <input type="email" class="form-control" v-model="user.email" required>
                 </div>
                 <div class="form-group">
-                    <label>Phone</label>
+                    <label>Contact</label>
                     <input type="text" class="form-control" v-model="user.contact" required>
                 </div>
                 <div class="form-group">
-                    <button type="submit" class="btn btn-primary btn-block mt-3">Add User</button>
+                    <button class="btn btn-success btn-block mt-3">Update User</button>
                 </div>
             </form>
         </div>
     </div>
 </template>
-
 <script>
 import { db } from '../firebaseDb';
- export default {
+export default {
         data() {
             return {
                 user: {
-                    name: "",
-                    email: "",
-                    contact: ""
                 }
             }
         },
+        created() {
+            let dbRef = db.collection('users').doc(this.$route.params.id);
+            dbRef.get().then((doc) => {
+                this.user = doc.data();
+            }).catch((error) => {
+                console.log(error)
+            })
+        },
         methods: {
-            onFormSubmit(event) {
+            onUpdateForm(event) {
                 event.preventDefault()
-              db.collection("users").add(this.user)
-                .then(() => {
-                    alert("User successfully created!");
-                    this.user.name = ''
-                    this.user.email = ''
-                    this.user.contact = ''
-                })
-                .catch((error) => {
+                db.collection('users').doc(this.$route.params.id)
+                .update(this.user).then(() => {
+                    console.log("User successfully updated!");
+                    this.$router.push('/list')
+                }).catch((error) => {
                     console.log(error);
                 });
             }
         }
     }
 </script>
-
-
-
