@@ -12,7 +12,7 @@
                     <input type="email" class="form-control" v-model="user.email" required>
                 </div>
                 <div class="form-group">
-                    <label>Phone</label>
+                    <label>Contact</label>
                     <input type="text" class="form-control" v-model="user.contact" required>
                 </div>
                 <div class="form-group">

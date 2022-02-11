@@ -3,9 +3,14 @@ import LayoutComponent from "../layouts/LayoutComponent.vue";
 import UserCreate from "../components/UserCreate.vue"
 import UserList from "../components/UserList.vue"
 import UserEdit from "../components/UserEdit.vue"
-
+import Statestore from "../components/Statestore.vue"
 
 const routes = [
+  {
+   path:"/store",
+   name: "Statestore",
+   component: Statestore
+  },
   {
     path: "/",
     name: "LayoutComponent",
