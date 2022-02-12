@@ -1,18 +1,29 @@
-// import { createStore } from "vuex";
+import { createStore, storeKey } from "vuex";
 
-// export default createStore({
-//   state: {},
-//   mutations: {},
-//   actions: {},
-//   modules: {},
-// });
+export default createStore({
+  state: {
+      firstName: "Benazir",
+      lastName: "Fathima",
+      count: 0
+  },
+  mutations: {
+      increment(state){
+          state.count++
+      }
+  },
+  actions: {
+    // increment(context){
+    //   context.commit("increment")
+    // }
+  },
+  modules: {},
+});
 
-// import { increment } from "@firebase/firestore";
-import { reactive } from "vue";
+// import { reactive } from "vue";
 
-export const store = reactive({
-    count: 0,
-    increment(){
-       this.count++
-    }
-})
+// export const store = reactive({
+//     count: 0,
+//     increment(){
+//        this.count++
+//     }
+// })
