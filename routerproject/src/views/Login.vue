@@ -19,6 +19,10 @@
     <span v-if="password == '' && submitValidation == true">Password is required</span>
     <span v-if="!RegPassword && password !== '' ">Password should be minimum 6 characters</span>
   </div>
+  <div class="flex flex-row">
+     <input type="checkbox" id="checkbox" v-model="selected"  @change="check($event)">
+     <label for="checkbox">Remember Me</label>
+  </div>
   <div>
     <button type="submit" @click="loginFunction()" class="btn btn-success" name="login">Login</button>
   </div>
@@ -46,12 +50,16 @@ export default {
          email: '',
          password: '',
          msg: '',
+         selected: false,
       }
     },
     methods:{
+       check() {
+      console.log("selected", this.selected);
+    },
        async loginFunction(){
-       
-          this.submitValidation = true
+         this.remember_me();
+        this.submitValidation = true
           const loginDetails = {
                  email: this.email,
                  password: this.password,
@@ -59,6 +67,7 @@ export default {
            console.log("loginDetails=>", loginDetails)
        if((this.email !== '' && this.RegEmail == true) && 
                      (this.password !== '' && this.RegPassword == true)){
+                       
                   var storedValue = await myService.loginPost(loginDetails)
                   console.log("storedValue", storedValue)
              }
@@ -69,6 +78,16 @@ export default {
               
           }
          },
+      remember_me() {
+      console.log("remember_me", this.email);
+      console.log("remember_me", this.password);
+      console.log("remember_me", this.selected)
+      if (this.selected == true && this.email !== "" && this.password !== "") {
+        localStorage.setItem("email", JSON.stringify(this.email));
+        localStorage.setItem("password",JSON.stringify(this.password));
+        localStorage.setItem("checked", this.selected)
+      }
+    },
        validateEmail(){
        this.RegEmail =  this.regexEmail.test(this.email) 
         console.log("RegEmail", this.RegEmail)
@@ -82,8 +101,16 @@ export default {
 
 created() {
        this.submitValidation = false
-    },
-}
+       const Email = JSON.parse(localStorage.getItem('email'))
+       const Password = JSON.parse(localStorage.getItem('password'))
+       if(Email !== "" && Password !== ""){
+           this.email = Email,
+           this.password = Password
+         }
+          console.log("Email", Email)
+          console.log("Password", Password)
+  },
+};
 </script>
 
 <!--

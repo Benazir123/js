@@ -88,12 +88,7 @@ p {
     <div class="container">
       <!-- <table class="table table-hover"> -->
       <!-- <thead> -->
-      <VTable
-        :data="listArray"
-        class="table table-hover"
-        :page-size="5"
-       
-      >
+      <VTable :data="listArray" class="table table-hover" :page-size="5">
         <template #head>
           <tr>
             <VTh sortKey="name">Meeting Id</VTh>
@@ -112,7 +107,7 @@ p {
             <td>{{ result.meeting_id }}</td>
             <td>{{ result.topic }}</td>
             <td>{{ result.engagement_type }}</td>
-            <td>{{ result.eo_firstName }}{{ result.eo_lastName }}</td>
+            <td>{{  result.eo_firstName }}{{ result.eo_lastName }}</td>
             <td>{{ result.spk_firstName }}{{ result.spk_lastName }}</td>
             <td>{{ result.status }}</td>
             <td>{{ dateFormat(result.createdAt) }}</td>
@@ -131,7 +126,12 @@ p {
     </div>
   </div>
   <div class="container pl-5">
-      <Pagination v-model="page"  :records="1379" :per-page="5"    @paginate="pageChangeEvent($event)"/>
+    <Pagination
+      v-model="page"
+      :records="1379"
+      :per-page="5"
+      @paginate="pageChangeEvent($event)"
+    />
   </div>
   <div v-if="show">
     <AddUser @backtohome="renderhome()" />
@@ -144,13 +144,13 @@ import myService from "../services/myService";
 import { onMounted } from "@vue/runtime-core";
 import AddUser from "../views/AddUser.vue";
 import moment from "moment";
-import Pagination from 'v-pagination-3'
+import Pagination from "v-pagination-3";
 export default {
-  name:"Home",
+  name: "Home",
   // name: "Pagination",
   components: {
     AddUser,
-    Pagination
+    Pagination,
   },
   data: () => ({
     filters: {
@@ -160,16 +160,16 @@ export default {
     //  currentPage: 1,
   }),
   setup() {
-     const page = ref(1)
-      const postValue = {
+    const page = ref(1);
+    const postValue = {
         page: page.value,
-        limit: 5
+        limit: 5,
       },
-        pageChangeEvent = (event) => {
-            postValue.page = event
-           listusers(postValue)
-           console.log("params",event)
-       }
+      pageChangeEvent = (event) => {
+        postValue.page = event;
+        listusers(postValue);
+        console.log("params", event);
+      };
     // const currentPage = ref(1);
     // const totalPages = ref(1);
     // const postValue = {
@@ -198,13 +198,32 @@ export default {
       listusers();
     };
     const show = ref(false);
-    var list = new Array
+    var list = new Array();
     const listArray = ref([]);
     async function listusers(postValue) {
       list = await myService.userlist(postValue);
+
+      // if (list && list.result && list.result.length > 0) {
+      //   list.result.forEach((element) => {
+      //    var Name = element.eo_firstName + "123";
+      //    element.eo_firstName = Name
+      //   });
+      //   console.log("Array")
+      // }
+
+      if(list && list.result && list.result.length > 0){
+           list.result.filter((item) => {
+             if(item.engagement_type == "Virtual In Office"){
+                  var Name = item.eo_firstName + "123"
+                  item.eo_firstName = Name
+                    console.log("Name")
+              }
+          })
+        }
+
       listArray.value = list.result;
       // totalPages.value = list.totalCount;
-       console.log("Get Method=>", listArray.value);
+      console.log("Get Method=>", listArray.value);
 
       // var postusers = await myService.postlist()
       // console.log("Post Method=>",postusers)
@@ -225,6 +244,7 @@ export default {
       // currentPage,
       // totalPages,
       page,
+    
     };
   },
 };

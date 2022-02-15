@@ -61,7 +61,13 @@
       >
     </div>
     <div class="flex flex-row">
-      <input type="checkbox" id="rememberMe" value="checked" v-model="checkbox"/>
+      <input
+        type="checkbox"
+        v-model="selected"
+     
+        @change="check($event)"
+        class="mt-1.5"
+      />
       <label class="pl-2" for="rememberMe">Remember Me</label>
     </div>
     <div>
@@ -86,7 +92,6 @@
 <script>
 import firebase from "firebase";
 import { useRouter } from "vue-router";
-import { vModelCheckbox } from '@vue/runtime-dom';
 
 export default {
   data() {
@@ -104,32 +109,15 @@ export default {
       RegEmail,
       RegPassword,
       router,
-      checkbox,
-      checked : true
+      selected: false,
     };
   },
   methods: {
+    check() {
+      console.log("selected", this.selected);
+    },
     loginFunction() {
-      if(localStorage.vModelCheckbox && localStorage.vModelCheckbox !== ""){
-          this.checkbox.setAttribute("checked", "checked");
-          this.email = localStorage.email,
-          this.password = localStorage.password
-      }else{
-         this.checkbox.removeAttribute("checked");
-        this.email = "",
-        this.password = ""
-      }
-
-      if( this.checkbox.checked && this.email !== "" && this.password !== ""){
-          localStorage.email = this.email,
-          localStorage.password = this.password,
-          localStorage.vModelCheckbox = this.checkbox
-      }else{
-         localStorage.email = "",
-         localStorage.password = "",
-         localStorage.vModelCheckbox = ""
-      }
-
+      this.remember_me();
       this.submitValidation = true;
       const loginDetails = {
         email: this.email,
@@ -164,6 +152,18 @@ export default {
                                this.router.push("/")
                      }*/
     },
+    remember_me() {
+      console.log("remember_me", this.email);
+      console.log("remember_me", this.password);
+      console.log("remember_me", this.selected)
+      if (this.selected && this.email !== "" && this.password !== "") {
+        localStorage.setItem("email", JSON.stringify(this.email));
+        localStorage.setItem("password",JSON.stringify(this.password));
+        localStorage.setItem("checked", this.selected)
+      }
+
+      
+    },
     validateEmail() {
       this.RegEmail = this.regexEmail.test(this.email);
     },
@@ -196,6 +196,19 @@ export default {
 
   created() {
     this.submitValidation = false;
+   // this.selected = false;
+    const Email = JSON.parse(localStorage.getItem('email'))
+    const Password = JSON.parse(localStorage.getItem('password'))
+    
+    //this.selected == true &&
+    if( Email !== "" && Password !== ""){
+           this.email = Email,
+           this.password = Password
+    }
+    console.log("Email", Email)
+    console.log("Password", Password)
+    return{
+    }
   },
 };
 </script>
