@@ -124,12 +124,12 @@ export default {
         password: this.password,
       };
       console.log("Login Details=>", loginDetails);
-      if (
-        this.email !== "" &&
-        this.RegEmail == true &&
-        this.password !== "" &&
-        this.RegPassword == true
-      ) {
+      // if (
+      //   this.email !== "" &&
+      //   this.RegEmail == true &&
+      //   this.password !== "" &&
+      //   this.RegPassword == true
+      // ) {
         firebase
           .auth()
           .signInWithEmailAndPassword(this.email, this.password)
@@ -147,7 +147,7 @@ export default {
         //localStorage.setItem("loginDetails",JSON.stringify(loginDetails))
 
         //  this.router.push("/")
-      }
+  // }
       /*if(localStorage.getItem("loginDetails") !== null ){
                                this.router.push("/")
                      }*/
@@ -156,14 +156,12 @@ export default {
       console.log("remember_me", this.email);
       console.log("remember_me", this.password);
       console.log("remember_me", this.selected)
-      if (this.selected && this.email !== "" && this.password !== "") {
+      if (this.selected == true && this.email !== "" && this.password !== "") {
         localStorage.setItem("email", JSON.stringify(this.email));
         localStorage.setItem("password",JSON.stringify(this.password));
         localStorage.setItem("checked", this.selected)
       }
-
-      
-    },
+   },
     validateEmail() {
       this.RegEmail = this.regexEmail.test(this.email);
     },
@@ -196,19 +194,16 @@ export default {
 
   created() {
     this.submitValidation = false;
-   // this.selected = false;
     const Email = JSON.parse(localStorage.getItem('email'))
     const Password = JSON.parse(localStorage.getItem('password'))
-    
-    //this.selected == true &&
-    if( Email !== "" && Password !== ""){
+    const Checked = JSON.parse(localStorage.getItem('checked'))
+    if(Checked && Checked == true && Email !== "" && Password !== ""){
            this.email = Email,
-           this.password = Password
+           this.password = Password,
+           this.selected = Checked
     }
     console.log("Email", Email)
     console.log("Password", Password)
-    return{
-    }
   },
 };
 </script>

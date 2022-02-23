@@ -64,7 +64,8 @@ p {
 -->
 
 <template>
-  <div v-if="!show">
+<article>
+  <!-- <div v-if="!show"> -->
     <div>
       <h1>
         EngagementDetails
@@ -78,11 +79,11 @@ p {
         </button>
       </h1>
       <!-- <label>Search by Name:</label> -->
-      <input
+      <!-- <input
         class="form-control w-50"
         v-model="filters.topic.value"
         placeholder="Search by Name"
-      />
+      /> -->
     </div>
 
     <div class="container">
@@ -108,7 +109,30 @@ p {
             <td>{{ result.topic }}</td>
             <td>{{ result.engagement_type }}</td>
             <td>{{  result.eo_firstName }}{{ result.eo_lastName }}</td>
-            <td>{{ result.spk_firstName }}{{ result.spk_lastName }}</td>
+            <td>{{ result.spk_firstName }}{{ result.spk_lastName }}
+                  <div
+                  v-if="result.spk_firstName.length > 1"
+                  class="flex-shrink w-5 h-5 ml-2 cursor-pointer"
+                  @click="openMoreSpk(row, result.spk_firstName)"
+                >
+                  <span
+                    class="
+                      w-full
+                      h-full
+                      text-fs9
+                      inline-flex
+                      items-center
+                      text-white
+                      justify-center
+                      bg-black
+                      rounded-full
+                     "
+                  >
+                    +{{ result.spk_firstName.length - 1 }}
+                  </span>
+                </div>
+
+            </td>
             <td>{{ result.status }}</td>
             <td>{{ dateFormat(result.createdAt) }}</td>
           </tr>
@@ -124,8 +148,7 @@ p {
         :maxPageLinks="5"
       /> -->
     </div>
-  </div>
-  <div class="container pl-5">
+   <div class="container pl-5">
     <Pagination
       v-model="page"
       :records="1379"
@@ -133,9 +156,19 @@ p {
       @paginate="pageChangeEvent($event)"
     />
   </div>
+<!-- </div> -->
+</article>
+
+<aside>
   <div v-if="show">
-    <AddUser @backtohome="renderhome()" />
+ <Transition name="slide-fade">
+   <!-- <div v-if="show"> -->
+      <component :is="'addUser'" @backtohome="renderhome()"/>
+       <!-- <AddUser @backtohome="renderhome()" /> -->
+    <!-- </div> -->
+  </Transition>
   </div>
+</aside>
 </template>
 
 <script>
@@ -149,17 +182,27 @@ export default {
   name: "Home",
   // name: "Pagination",
   components: {
-    AddUser,
+   'addUser': AddUser,
     Pagination,
   },
-  data: () => ({
-    filters: {
-      topic: { value: "", keys: ["topic"] },
-    },
-    // totalPages:0,
-    //  currentPage: 1,
-  }),
+  data(){
+    return{
+         keyword: "",
+         hidespklist: false,
+
+    }
+  },
+  // data: () => ({
+  //   filters: {
+  //     topic: { value: "", keys: ["topic"] },
+  //   },
+  // }),
   setup() {
+      const openMoreSpk = (row, spkArray) => {
+      //this.hidespklist = !this.hidespklist;
+      row.hidespklist = !row.hidespklist;  
+      this.moreSpeaker = spkArray;
+      }
     const page = ref(1);
     const postValue = {
         page: page.value,
@@ -244,19 +287,62 @@ export default {
       // currentPage,
       // totalPages,
       page,
-    
+    openMoreSpk, 
     };
   },
 };
 </script>
 
-<style scoped>
+<style>
 #addUser {
   float: right;
   width: 10%;
   border-radius: 8px;
   margin-right: 10px;
 }
+
+/* .v-enter-active,
+  .v-leave-active{
+      transition: opacity 5s ease;
+  }
+
+   .v-enter-from,
+   .v-leave-to{
+        opacity: 0;
+  } */
+
+  aside {
+    width: 40%;
+    padding-left: .5rem;
+    margin-left: .5rem;
+    float: right;
+    box-shadow: inset 5px 0 5px -5px #29627e;
+  }
+
+  /* article {
+      width: 50%;
+      padding: 10px;
+      float: left;
+    } */
+
+.slide-fade-enter-active {
+  transition: all 0.3s ease-out;
+}
+.slide-fade-leave-active {
+  transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
+}
+
+.slide-fade-enter-from,
+.slide-fade-leave-to {
+  transform: translateX(20px);
+  opacity: 0;
+}
+
+/* aside > article {
+    margin: .5rem;
+} */
+
+
 </style>
 
 

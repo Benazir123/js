@@ -4,7 +4,7 @@ import axios from "./index"
 export default {
     //for get users
     async userlist(postValue: any) {
-        console.log('postValue=>',postValue)
+        // console.log('postValue=>',postValue)
         const response = await axios().post("https://salixv3qa.radiusdirect.net/coreapi/v2/listEngagementForAdminNew", postValue)
             .then((response: any) => {
                 return response.data

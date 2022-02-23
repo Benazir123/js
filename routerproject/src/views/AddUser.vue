@@ -50,6 +50,9 @@ methods:{
 			  }
 		  },
 	},
+		created() {
+		console.log("Add User component created")
+	},
 
 	
 };

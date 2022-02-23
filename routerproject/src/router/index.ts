@@ -9,6 +9,8 @@ import ParentComponent from "@/components/ParentComponent.vue"
 import ChildComponent from "@/components/ChildComponent.vue"
 import LiveSession from "../views/LiveSession.vue";
 import Ticket from "../views/Ticket.vue";
+import Tabs from "@/components/Tabs.vue"
+import Transition from "@/components/Transition.vue"
 
 
 
@@ -35,6 +37,11 @@ import Ticket from "../views/Ticket.vue";
 // console.log("guardMyroute", guardMyroute)
 
 const routes = [
+  {
+    path: "/transition",
+    name: "Transition",
+    component: Transition
+  },
   {
     path: "/login",
     name: "Login",
@@ -88,6 +95,11 @@ const routes = [
         name: "Ticket",
         component: Ticket,
       },
+      {
+        path:"/tab",
+        name:"Tabs",
+        component: Tabs
+      }
      ],
   },
 ];
@@ -95,6 +107,7 @@ const routes = [
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes,
+  
 });
 
 router.beforeEach((to, from, next) => {

@@ -5,6 +5,14 @@
   </div>
 </template>
 
+<script>
+export default {
+  mounted(){
+    console.log("About has been mounted")
+  }
+}
+</script>
+
 <style scoped>
 h1,
 p {

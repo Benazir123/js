@@ -13,3 +13,4 @@ interface BasicFilter {
 }
 
 declare module "vuejs-smart-table"
+declare module "vue3-google-oauth2"

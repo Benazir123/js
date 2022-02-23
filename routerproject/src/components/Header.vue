@@ -18,6 +18,9 @@
            <li class="nav-item">
             <router-link class="nav-link disabled" to="/ticket">Ticket</router-link>
           </li>
+          <li class="nav-item">
+            <router-link class="nav-link" to="/tab">Tabs</router-link>
+          </li>
            <li class="nav-item">
             <router-link class="nav-link" to="/login" @click="logOut()">Logout</router-link>
           </li>
