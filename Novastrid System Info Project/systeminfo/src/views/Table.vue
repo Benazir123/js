@@ -12,6 +12,9 @@
     </h1>
 </div>
 <div>
+    <div>
+        <input type="text" v-model="search" placeholder="Search by Name" class="rounded"/>
+    </div>
       <div class="row">
         <div class="col-md-12">
             <table class="table table-striped">
@@ -25,68 +28,68 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="employee in Employees" :key="employee.key">
-                        <td>{{ employee.empid }}</td>
+                    <tr v-for="(employee,index) in employees,filteredRows" :key="index">
+                        <td>{{ employee.empId }}</td>
                         <td>{{ employee.name }}</td>
                         <td>{{ employee.position }}</td>
                         <td>{{ employee.systemname }}</td>
                         <td>{{ employee.systemtype }}</td>
-                        <td>
-                            <router-link :to="{name: 'edit', params: { id: employee.key }}" class="btn btn-primary">Edit
-                            </router-link>
-                            <button @click.prevent="deleteEmployee(employee.key)" class="btn btn-danger">Delete</button>
-                        </td>
                     </tr>
                 </tbody>
             </table>
         </div>
     </div>
 </div>
+ <!-- <div>
+    <Pagination
+      v-model="page"
+      @paginate="pageChangeEvent($event)"
+    />
+  </div> -->
 </template>
 
 <script>
-import { db } from '../firebaseDb';
+// import Pagination from 'v-pagination-3';
+import { useRouter } from 'vue-router'
 export default {
-        data() {
-            return {
-                Employees: []
-            }
-        },
-        created() {
-            db.collection('employees').onSnapshot((snapshotChange) => {
-                this.Employees = [];
-                snapshotChange.forEach((doc) => {
-                    this.Employees.push({
-                        key: doc.id,
-                        empid: doc.data().empid,
-                        name: doc.data().name,
-                        position: doc.data().position,
-                        systemname: doc.data().systemname,
-                        systemtype: doc.data().systemtype,
-                     })
-                });
-            })
-        },
-        methods: {
-            deleteEmployee(id){
-              if (window.confirm("Do you really want to delete?")) {
-                db.collection("employees").doc(id).delete()
-                .then(() => {
-                    console.log("Document deleted!");
-                })
-                .catch((error) => {
-                    console.error(error);
-                })
-              }
-            },
-            addEmployee(){
-                this.$router.push('/add')
-            }
+    // components:{
+    //    Pagination
+    // },
+    data(){
+        let router = useRouter();
+        return{
+          router,
+          employees: [],
+          search:""
+          
         }
-    }
+    },
+    methods:{
+       addEmployee(){
+           this.router.push("/add")
+        },
+        filteredRows(){
+             return this.employees.filter(employee => {
+                 const empName = employee.name.toString().toLowerCase();
+                 const searchTerm = this.filter.toLowerCase();
+                 return empName.includes(searchTerm)
+             })
+        }
+     },
+    // created() {
+    //        var formData = JSON.parse(localStorage.getItem("submitDetails")) 
+    //         console.log("ADD Employee", formData)
+    //       this.employees.push(formData)
+    // },
+}
 </script>
+
 <style>
-    .btn-primary {
-        margin-right: 12px;
-    }
+    #addUser {
+  float: right;
+  width: 12%;
+  border-radius: 8px;
+  margin-right: 10px;
+}
+
 </style>

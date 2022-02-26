@@ -1,7 +1,7 @@
 <template>
    <div class="d-flex">
     <div class= "sidebar">
-      <h5>
+      <h5 style="color: blue">
         Contents
       </h5>
      <ul class="sidebar-nav">
@@ -11,7 +11,10 @@
                 <li class="nav-item">
                     <router-link class="nav-link" to="/about">About</router-link>
                 </li>
-      </ul>
+                <li class="nav-item">
+                    <router-link class="nav-link" to="/login">Logout</router-link>
+                </li>
+          </ul>
     </div>
 <br>
     <div class="container-fluid">
@@ -25,7 +28,11 @@
   width:15%;
   height:100vh;
   text-decoration:none;
-  background-color: rgb(214, 206, 206);
+  background-color: #222524
+}
+
+.container-fluid{
+  background-color:#ffffff
 }
 
 </style>

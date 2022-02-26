@@ -1,11 +1,16 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 import Table from '../views/Table.vue'
 import LayoutComponent from '../layouts/LayoutComponent.vue'
-import EmployeeCreate from '../views/EmployeeCreate.vue'
-import EmployeeEdit from '../views/EmployeeEdit.vue'
-
+import AddEmployee from '../views/AddEmployee.vue'
+import EditEmployee from '../views/EditEmployee.vue'
+import Login from '../views/Login.vue'
 
 const routes: Array<RouteRecordRaw> = [
+  {
+   path: "/login",
+   name:"Login",
+   component: Login
+  },
   {
     path: '/',
     name: 'LayoutComponent',
@@ -26,14 +31,14 @@ const routes: Array<RouteRecordRaw> = [
       },
       {
           path: "/add",
-          name: "EmployeeCreate",
-          component: EmployeeCreate,
+          name: "AddEmployee",
+          component: AddEmployee,
           props: true
       },
       {
-        path: "/edit/:id",
-        name: "edit",
-        component: EmployeeEdit,
+        path: "/edit",
+        name: "EditEmployee",
+        component: EditEmployee,
         props: true
       },
   ]
