@@ -36,7 +36,7 @@ const routes: Array<RouteRecordRaw> = [
           props: true
       },
       {
-        path: "/edit",
+        path: "/edit/:id",
         name: "EditEmployee",
         component: EditEmployee,
         props: true
@@ -50,5 +50,17 @@ const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes
 })
+
+router.beforeEach((to, from, next) => {
+  let isAuthenticated = '' as any
+ isAuthenticated = localStorage.getItem('loginDetails')
+ console.log('isauthenticated',to.name)
+ if(to.name !== 'Login' && !isAuthenticated){
+  next('/login')
+ }
+if (to.name == 'Login' && isAuthenticated && isAuthenticated != '') 
+next({name : 'Table'})
+else next()
+ })
 
 export default router

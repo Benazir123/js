@@ -1,8 +1,7 @@
-<!--
 <template>
     <div class="row justify-content-center">
         <div class="col-md-5">
-            <h3 class="text-center">Add Employee</h3>
+            <h2 class="text-center">Add Employee</h2>
             <form @submit.prevent="onFormSubmit">
                 <div class="form-group">
                     <label>Employee ID</label>
@@ -10,7 +9,7 @@
                 </div>
                 <div class="form-group">
                     <label>Employee Name</label>
-                    <input type="email" class="form-control" v-model="employee.name" required>
+                    <input type="text" class="form-control" v-model="employee.name" required>
                 </div>
                 <div class="form-group">
                     <label>Position</label>
@@ -25,7 +24,7 @@
                     <input type="text" class="form-control" v-model="employee.systemtype" required>
                 </div>
                 <div class="form-group">
-                    <button type="submit" class="btn btn-primary btn-block mt-3">Add User</button>
+                    <button type="submit" class="btn btn-primary btn-block mt-3">Submit</button>
                 </div>
             </form>
         </div>
@@ -33,9 +32,12 @@
 </template>
 
 <script>
-import { db }  from '../firebaseDb';
+import router from '@/router';
+import { useRouter } from 'vue-router';
+import { db }   from '/firebaseDb';
  export default {
         data() {
+            let router = useRouter();
             return {
                 employee: {
                         empid: "",
@@ -43,7 +45,8 @@ import { db }  from '../firebaseDb';
                         position: "",
                         systemname: "",
                         systemtype: ""
-                }
+                },
+                router
             }
         },
         methods: {
@@ -52,11 +55,13 @@ import { db }  from '../firebaseDb';
               db.collection("employees").add(this.employee)
                 .then(() => {
                     alert("Employee data successfully created!");
+                    this.$router.push('/')
                     this.employee.empid = ''
                     this.employee.name = ''
                     this.employee.position = ''
                     this.employee.systemname = '' 
                     this.employee.systemtype = ''
+                
                 })
                 .catch((error) => {
                     console.log(error);
@@ -65,8 +70,21 @@ import { db }  from '../firebaseDb';
         }
     }
 </script>
--->
 
+<style scoped>
+div{
+     padding: 10px;
+ }
+
+ label{
+     font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+     font-size: 20px;
+     font-weight: bold;
+ }
+</style>
+
+
+<!--
 <template>
     <div>
         	<h1>Add Employee</h1>
@@ -174,4 +192,4 @@ methods:{
 }
 
 </style>
-
+-->

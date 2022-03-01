@@ -1,8 +1,7 @@
-<!--
 <template>
     <div class="row justify-content-center">
         <div class="col-md-5">
-            <h3 class="text-center">Update User</h3>
+            <h2 class="text-center">Update Details</h2>
             <form @submit.prevent="onUpdateForm">
                <div class="form-group">
                     <label>Employee ID</label>
@@ -10,7 +9,7 @@
                 </div>
                 <div class="form-group">
                     <label>Employee Name</label>
-                    <input type="email" class="form-control" v-model="employee.name" required>
+                    <input type="text" class="form-control" v-model="employee.name" required>
                 </div>
                 <div class="form-group">
                     <label>Position</label>
@@ -25,14 +24,14 @@
                     <input type="text" class="form-control" v-model="employee.systemtype" required>
                 </div>
                 <div class="form-group">
-                    <button class="btn btn-success btn-block mt-3">Update User</button>
+                    <button class="btn btn-success btn-block mt-3">Update</button>
                 </div>
             </form>
         </div>
     </div>
 </template>
 <script>
-import { db } from '../firebaseDb';
+import { db } from '/firebaseDb';
 export default {
         data() {
             return {
@@ -62,4 +61,15 @@ export default {
         }
     }
 </script>
--->
+
+<style scoped>
+ div{
+     padding: 10px;
+ }
+
+ label{
+     font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+     font-size: 20px;
+     font-weight: bold;
+ }
+</style>

@@ -12,7 +12,7 @@
                     <router-link class="nav-link" to="/about">About</router-link>
                 </li>
                 <li class="nav-item">
-                    <router-link class="nav-link" to="/login">Logout</router-link>
+                    <router-link class="nav-link" to="/login" @click="logOut()">Logout</router-link>
                 </li>
           </ul>
     </div>
@@ -22,6 +22,24 @@
     </div>
 </div>
 </template>
+
+<script>
+import { useRouter } from 'vue-router'
+export default {
+  data(){
+      let router = useRouter();
+    return{
+       router
+    }
+  },
+  methods:{
+      logOut(){
+             localStorage.removeItem("loginDetails")
+              this.router.push("/login")
+      },
+  }
+}
+</script>
 
 <style scoped>
 .sidebar{
