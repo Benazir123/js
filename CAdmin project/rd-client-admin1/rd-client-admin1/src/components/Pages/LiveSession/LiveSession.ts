@@ -36,6 +36,7 @@ export default defineComponent({
       expendedRowData: {},
       modelValue: '',
       isOpenUserProfiledrawer: false,
+      hidespeaker: false
     };
   },
   methods: {
@@ -139,6 +140,11 @@ export default defineComponent({
     openMoreAttendee() {
       this.hidefilter = !this.hidefilter;
     },
+    //open More Speaker
+    openMoreSpeaker(){
+      this.hidespeaker = !this.hidespeaker
+      console.log("spk=>", this.hidespeaker)
+    }
   },
 
   setup(emit) {

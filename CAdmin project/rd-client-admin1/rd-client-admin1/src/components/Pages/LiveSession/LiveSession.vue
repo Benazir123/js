@@ -181,7 +181,23 @@
                       ><i class=""></i>{{ row.engagement_speaker.user[0].status }}</b
                     >
                   </span>
-                </div>
+                   <span @click="openMoreSpk()"
+                      class="
+                        w-5
+                        h-5
+                        inline-flex
+                        items-center
+                        text-white
+                        text-xs
+                        justify-center
+                        bg-attcount
+                        rounded-full
+                        ml-1
+                      "
+                    >
+                      +{{row.engagement_speaker.user.length}}
+                    </span>
+               </div>
               </div>
             </td>
 
