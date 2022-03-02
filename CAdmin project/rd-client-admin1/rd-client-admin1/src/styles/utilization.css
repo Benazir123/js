@@ -1,0 +1,127 @@
+.treetablewrp .row.header {
+    padding: 0px !important;
+    display: flex;
+    flex-wrap: nowrap;
+    background: #F1F6FF;
+    border-radius: 15px 15px 0px 0px;   
+    border:0px;
+    align-items: center;
+}
+.treetablewrp .row {
+    padding: 0px !important;
+    display: flex;
+    flex-wrap: nowrap;
+    border: 1px solid #E9ECEF;
+    position: relative;
+    flex-flow: inherit;
+    justify-content: inherit;
+}
+.treetablewrp .row .open {
+    cursor: pointer;
+}
+.treetablewrp .cell {
+    padding:  10px;
+    flex-grow: inherit;
+    flex-basis: auto;
+}
+.treetablewrp .row.header .cell {
+    padding: 5px 10px;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 22px;
+    color: #1B2559;
+    text-transform: capitalize;
+}
+
+.treetablewrp .row .cell {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 22px;
+    color: #525F7F;
+    text-transform: capitalize;
+}
+.treetablewrp>div>div>.row {
+    background: #fff!important;
+}
+.treetablewrp>div>div>div .row {
+    background: #F7FBFA!important;
+}
+.treetablewrp>div>div>div>.row {
+    background: #F2FFFE!important;
+}
+.treetablewrp .row .cell:nth-child(1) {
+    width: 10px;
+    position: absolute;
+    left: 10px;
+    top: 15px;
+    padding: 0;
+}
+.treetablewrp .row .cell:nth-child(3) {
+    width: 80px;
+}
+.treetablewrp .row .cell {
+    width: 100px;
+}
+.treetablewrp .row[depth="1"] .cell:nth-child(2) {
+    padding-left: 60px;
+}
+.treetablewrp .row[depth="1"] .cell:nth-child(1) {
+    left: 40px;
+}
+.treetablewrp .row[depth="2"] .cell:nth-child(2) {
+    padding-left: 90px;
+}
+.treetablewrp .row[depth="2"] .cell:nth-child(1) {
+    left: 70px;
+}
+.treetablewrp .row .indentation {
+    display: none;
+}
+
+/* new table */
+.tabletreewrp th.v-th div {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: normal;
+    color: #1B2559;
+    text-transform: capitalize;
+    padding: 5px 20px;
+}
+.tabletreewrp tr td {
+    padding: 10px 20px;
+    background: none;
+}
+.tabletreewrp tbody tr {
+    border: 1px solid #E9ECEF;
+}
+.tabletreewrp tr.child1 {
+    background: #F2FFFE!important;
+}
+.tabletreewrp tr.child1 td:first-child {
+    padding-left: 40px;
+}
+.tabletreewrp tr.child2 {
+    background: #F7FBFA!important;
+}
+.tabletreewrp tr.child2 td:first-child {
+    padding-left: 70px;
+}
+.tabletreewrp tr.child3 {
+    background: #F7FBFA!important;
+}
+.tabletreewrp tr.child3 td:first-child {
+    padding-left: 100px;
+}
+.tabletreewrp tr.child4 {
+    background: #F7FBFA!important;
+}
+.tabletreewrp tr.child4 td:first-child {
+    padding-left: 130px;
+}
+.actbtn {
+    font-weight: 400!important;
+}
+.mbcan {
+    margin-bottom: 0px!important;
+    line-height: normal;
+}

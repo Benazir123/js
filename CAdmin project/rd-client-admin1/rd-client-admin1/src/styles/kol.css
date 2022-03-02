@@ -1,0 +1,72 @@
+.apexcharts-series path:nth-child(2),
+.apexcharts-series path:nth-child(4),
+.apexcharts-series path:nth-child(6),
+.apexcharts-series path:nth-child(8) {
+    fill:#185DDC!important;
+}
+.border-searchbox .apexcharts-text tspan {
+    fill: #A3AED0!important;
+    font-weight: 500!important;
+    font-size: 12px!important;
+    font-family: 'DM Sans', sans-serif!important;
+}
+.border-searchbox .apexcharts-legend, .apexcharts-toolbar, 
+.border-searchbox .apexcharts-gridlines-horizontal {
+    display: none!important;
+}
+/* Toggle A */
+input:checked ~ .dot {
+    transform: translateX(100%);
+    background-color: #fff;
+  }
+  
+  /* Toggle B */
+  input:checked ~ .dot {
+    transform: translateX(100%);
+    background-color: #fff!important;
+    border:2px solid #0ACF83;
+  }
+
+  input:checked ~ .bg-white {
+      background: #0ACF83;
+      border: #0ACF83;
+  }
+  .actionbtns{
+      border-radius: 5px!important;
+  }
+  .btnlist button{
+border-radius: 4px!important;
+font-size: 13px!important;
+  }
+.dateinput input{
+    height: 44px!important;
+}
+.generalspk .generalbod input, .generalbod textarea {
+    background: rgba(0, 0, 0, 0.05)!important;
+    border: 1px solid  rgba(102, 102, 102, 0.24)!important;
+}
+.generalspk #litepie input{
+box-shadow: none!important;
+border: 1px solid rgba(102, 102, 102, 0.24)!important;
+background-color: white;
+border-radius: 5px!important;
+
+}
+.commonform .commtitle h4{
+font-size: 18px!important;
+}
+.projectsdetailss th.v-th div span{
+    padding-right: 0!important;
+}
+.estimategeneral input{
+    padding-left: 40px;
+}
+.notetabs th.v-th span div{
+    padding: 0!important;
+}
+.notetabs td:last-child{
+    padding: 10px 13px!important;
+}
+.loginnertab, .loginnertab table {
+    border-radius: 0px!important;
+}

@@ -1,0 +1,142 @@
+.scroller::-webkit-scrollbar-thumb {
+	-webkit-border-radius: 10px;
+	border-radius: 10px;
+	background: transparent;
+	transition: .5s;
+}
+.scroller:hover::-webkit-scrollbar-thumb {
+	background: #b4b8b8;
+}
+.scroller {
+	overflow-y: scroll;
+	scrollbar-color: #000 #fff;
+	scrollbar-width: thin;
+}
+.scroller::-webkit-scrollbar {
+	width: 6px;
+	height: 6px;
+}
+.scroll-team {
+	max-height: calc(100vh - 250px);
+}
+.scroll-table {
+    height: 200px;
+}
+/* drawer */
+
+.right-drawer {
+	position: fixed;
+	top: 0;
+	right: -80vw;
+	width: 80vw; /* initially */
+	height: 100vh;
+	padding-left: 0; /* initially */
+	background: white;
+	z-index: 200;
+	border-radius: 15px 15px 0px 0px;
+  }
+  .drawer-mask {
+	position: fixed;
+	top: 0;
+	width: 100vw; /* initially */
+	height: 100vh;
+	background: rgba(0 0 0 / 50%);
+  }
+  .scroll-type {
+    height: calc(100vh - 123px);
+	margin-right: -13px;
+    padding-right: 7px;
+}
+/* common input no  */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+.userprofile .right-drawer {
+	right: -32vw;
+	width: 32vw;
+}
+.prescriber .right-drawer {
+	right: -32vw;
+	width: 32vw;
+}
+.scroll-team {
+	max-height: calc(100vh - 80px);
+}
+.scroll-pop {
+	height: calc(100vh - 135px);
+}
+.scrollheight{
+height:  calc(100vh - 315px);
+}
+.scroll-survey {
+	height: calc(100vh - 228px);
+}
+.right-drawer.surveypop {
+	width: 625px; /* initially */
+	border-radius: 0px;
+	border-top-left-radius: 20px;
+	overflow: hidden;
+	top:150px;
+}
+.scroll-forms{
+	height: calc(100vh - 216px);
+}
+.scroll-loader{
+	height: calc(100vh - 100px);
+}
+
+.scrollnone, .scrollnone table {
+	overflow: inherit;
+}
+/* Engagements */
+.scrollnone table tr:first-child:nth-last-child(10) ~ tr:last-child .profilewrp, 
+.scrollnone table tr:first-child:nth-last-child(10) ~ tr:nth-last-child(2) .profilewrp, 
+.scrollnone table tr:first-child:nth-last-child(10) ~ tr:nth-last-child(3) .profilewrp,
+.scrollnone table tr:first-child:nth-last-child(10) ~ tr:nth-last-child(4) .profilewrp {
+	top: auto!important;
+   	bottom: 100%!important;
+}
+.scroll-align{
+	height: calc(100vh - 230px);
+}
+.tickets .right-drawer {
+	width: 40vw;
+	right: -100vw;
+} 
+.scroll-ffsalign{
+	height: calc(100vh - 100px);
+}
+.scroll-addAligned{
+	height: calc(100vh - 130px);
+}
+
+.logdrawermask .right-drawer {
+	position: fixed;
+	top: 0;
+	right: -80vw;
+	width: 55vw; /* initially */
+	height: 100vh;
+	padding-left: 0; /* initially */
+	background: white;
+	z-index: 200;
+	border-radius: 15px 15px 0px 0px;
+  }
+  .hcpdrawers .right-drawer{
+	position: fixed;
+	top: 0;
+	right: -80vw;
+	width: 50vw!important; /* initially */
+
+	height: 100vh;
+	padding-left: 0; /* initially */
+	background: white;
+	z-index: 200;
+	border-radius: 15px 15px 0px 0px;
+}
