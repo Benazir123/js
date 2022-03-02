@@ -1,0 +1,1 @@
+{"version":3,"sources":["webpack:///./src/assets/documenticon.svg"],"names":["module","exports"],"mappings":"qGAAAA,EAAOC,QAAU,IAA0B","file":"js/chunk-2d0b6852.5cac20a0.js","sourcesContent":["module.exports = __webpack_public_path__ + \"img/documenticon.cb0b1c89.svg\";"],"sourceRoot":""}

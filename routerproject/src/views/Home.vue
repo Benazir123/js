@@ -65,7 +65,7 @@ p {
 
 <template>
 <article>
-  <!-- <div v-if="!show"> -->
+  <div v-if="!show">
     <div>
       <h1>
         EngagementDetails
@@ -112,7 +112,7 @@ p {
             <td>{{ result.spk_firstName }}{{ result.spk_lastName }}
                   <div
                   v-if="result.spk_firstName.length > 1"
-                  class="flex-shrink w-5 h-5 ml-2 cursor-pointer"
+                  class="w-5 h-5 cursor-pointer"
                   @click="openMoreSpk(row, result.spk_firstName)"
                 >
                   <span
@@ -156,19 +156,19 @@ p {
       @paginate="pageChangeEvent($event)"
     />
   </div>
-<!-- </div> -->
+</div>
 </article>
 
-<aside>
+<!-- <aside> -->
   <div v-if="show">
- <Transition name="slide-fade">
+ <!-- <Transition name="slide-fade"> -->
    <!-- <div v-if="show"> -->
       <component :is="'addUser'" @backtohome="renderhome()"/>
        <!-- <AddUser @backtohome="renderhome()" /> -->
     <!-- </div> -->
-  </Transition>
+  <!-- </Transition> -->
   </div>
-</aside>
+<!-- </aside> -->
 </template>
 
 <script>
@@ -325,7 +325,7 @@ export default {
       float: left;
     } */
 
-.slide-fade-enter-active {
+/* .slide-fade-enter-active {
   transition: all 0.3s ease-out;
 }
 .slide-fade-leave-active {
@@ -336,7 +336,7 @@ export default {
 .slide-fade-leave-to {
   transform: translateX(20px);
   opacity: 0;
-}
+} */
 
 /* aside > article {
     margin: .5rem;
