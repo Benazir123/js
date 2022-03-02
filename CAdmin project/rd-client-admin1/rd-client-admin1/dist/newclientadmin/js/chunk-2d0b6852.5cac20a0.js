@@ -1,2 +1,0 @@
-(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["chunk-2d0b6852"],{"1e08":function(n,c,o){n.exports=o.p+"img/documenticon.cb0b1c89.svg"}}]);
-//# sourceMappingURL=chunk-2d0b6852.5cac20a0.js.map
