@@ -1,0 +1,29 @@
+.kolconsultantdrop select{
+    width: 130px;
+}
+.kolconsultantdropstatus select{
+    width: 130px;
+}
+.livechat ::placeholder {
+    color: #185DDC;
+    opacity: 1; /* Firefox */
+  }
+  
+ .livechat :-ms-input-placeholder { /* Internet Explorer 10-11 */
+   color: #185DDC;
+  }
+  
+  .livechat ::-ms-input-placeholder { /* Microsoft Edge */
+   color: #185DDC;
+  }
+  .drawerinnermask {
+	position: fixed;
+	top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+	width: 100%; /* initially */
+	height: 100vh;
+	background: rgba(196, 196, 196, 0.57);
+	
+}
