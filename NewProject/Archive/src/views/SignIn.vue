@@ -19,20 +19,47 @@
               <div class="mt-8 card card-plain">
                 <div class="pb-0 card-header text-start">
                   <h3 class="font-weight-bolder text-info text-gradient">
-                    Welcome back
+                    <img
+                      class="w-75 h-75"
+                      src="https://www.novastrid.com/images/NOVALOGO.png"
+                    />
                   </h3>
-                  <p class="mb-0">Enter your email and password to sign in</p>
+                  <p class="mt-3">Admin Panel</p>
                 </div>
                 <div class="card-body">
                   <form role="form" class="text-start">
+                    <div>
                     <label>Email</label>
-                    <vsud-input type="email" placeholder="Email" name="email" />
+                    <vsud-input
+                      :type="number"
+                      :value="email"
+                      placeholder="Email"
+                      @keyup="validateEmail()"
+                      name="email"
+                    />
+                    <span v-if="email == '' && submitValidation == true"
+                      >Email is required</span
+                    >
+                    <span v-if="!RegEmail && email !== ''"
+                      >Enter a valid email address</span
+                    >
+                    </div>
+                    <div>
                     <label>Password</label>
                     <vsud-input
-                      type="password"
+                      :type="password"
+                      :value="password"
                       placeholder="Password"
+                      @keyup="validatePassword()"
                       name="password"
                     />
+                    <span v-if="password == '' && submitValidation == true"
+                      >Password is required</span
+                    >
+                    <span v-if="!RegPassword && password !== ''"
+                      >Password should be minimum 6 characters</span
+                    >
+                    </div>
                     <vsud-switch id="rememberMe" checked>
                       Remember me
                     </vsud-switch>
@@ -42,6 +69,7 @@
                         variant="gradient"
                         color="info"
                         fullWidth
+                        @click="signinFunction()"
                         >Sign in
                       </vsud-button>
                     </div>
@@ -61,10 +89,26 @@
             </div>
             <div class="col-md-6">
               <div
-                class="top-0 oblique position-absolute h-100 d-md-block d-none me-n8"
+                class="
+                  top-0
+                  oblique
+                  position-absolute
+                  h-100
+                  d-md-block d-none
+                  me-n8
+                "
               >
                 <div
-                  class="bg-cover oblique-image position-absolute fixed-top ms-auto h-100 z-index-0 ms-n6"
+                  class="
+                    bg-cover
+                    oblique-image
+                    position-absolute
+                    fixed-top
+                    ms-auto
+                    h-100
+                    z-index-0
+                    ms-n6
+                  "
                   :style="{
                     backgroundImage:
                       'url(' +
@@ -88,7 +132,10 @@
 import VsudInput from "@/components/VsudInput.vue";
 import VsudSwitch from "@/components/VsudSwitch.vue";
 import VsudButton from "@/components/VsudButton.vue";
+// import { ref } from "@vue/reactivity";
 const body = document.getElementsByTagName("body")[0];
+import myService from '@/services/myService';
+import { useRouter } from 'vue-router';
 
 export default {
   name: "signin",
@@ -98,6 +145,55 @@ export default {
     VsudInput,
     VsudSwitch,
     VsudButton,
+  },
+  data(){
+    let regexEmail = new RegExp("[a-z0-9]+@[a-z]+.[a-z]{2,3}");
+    let regexPassword = new RegExp("[a-z0-9A-Z].{6,}");
+    let RegEmail = Boolean;
+    let RegPassword = Boolean;
+    let router = useRouter();
+    return{
+      regexEmail,
+      regexPassword,
+      RegEmail,
+      RegPassword,
+      submitValidation: false,
+      email: "",
+      password: "",
+      router
+      // validateEmail
+      // email: "",
+      // password: ""
+    }
+  },
+  methods: {
+    async signinFunction() {
+       event.preventDefault();
+      this.submitValidation = true;
+       const employeeDetails ={
+           email: this.email,
+          password: this.password
+       }
+       console.log("EmployeeDetails", employeeDetails)
+      var storedValue = await myService.loginPost(employeeDetails)
+              console.log("storedValue", storedValue)
+      if(storedValue && storedValue.apiStatus == true){
+               this.router.push("/employee-system-info")
+              console.log("router")
+              myService.setToken(storedValue)
+              
+          }
+            
+    },
+    validateEmail() {
+      this.RegEmail = this.regexEmail.test(this.email);
+      console.log("email", this.email);
+      console.log("RegEmail", this.RegEmail);
+    },
+    validatePassword() {
+      this.RegPassword = this.regexPassword.test(this.password);
+      console.log("RegPassword", this.RegPassword);
+    },
   },
   beforeMount() {
     this.$store.state.hideConfigButton = true;
@@ -113,5 +209,15 @@ export default {
     this.$store.state.showFooter = true;
     body.classList.add("bg-gray-100");
   },
+  created() {
+    this.submitValidation = false;
+  },
 };
 </script>
+
+<style scoped>
+span {
+  color: red;
+  font-size: 15px;
+}
+</style>

@@ -7,6 +7,11 @@ import Profile from "@/views/Profile.vue";
 import Rtl from "@/views/Rtl.vue";
 import SignIn from "@/views/SignIn.vue";
 import SignUp from "@/views/SignUp.vue";
+// import { from } from "core-js/core/array";
+import TableSystemInfo from "@/views/TableSystemInfo.vue";
+import TableSystemMaster from "@/views/TableSystemMaster.vue";
+import TableTeam from "@/views/TableTeam.vue";
+
 
 const routes = [
   {
@@ -23,6 +28,21 @@ const routes = [
     path: "/employee-system-info",
     name: "Employee",
     component: Tables,
+  },
+  {
+    path: "/system-info-table",
+    name: "Employee System Info",
+    component: TableSystemInfo,
+  },
+  {
+    path: "/system-master-table",
+    name: "System Master",
+    component: TableSystemMaster,
+  },
+  {
+    path: "/team-table",
+    name: "Team",
+    component: TableTeam,
   },
   {
     path: "/billing",
@@ -61,5 +81,17 @@ const router = createRouter({
   routes,
   linkActiveClass: "active",
 });
+
+// router.beforeEach((to, from, next) => {
+//   let isAuthenticated = ''
+//  isAuthenticated = localStorage.getItem('access_token')
+//  console.log('isauthenticated',to.name)
+//  if(to.name !== 'Sign In' && !isAuthenticated){
+//   next('/Sign In')
+//  }
+// if (to.name == 'Sign In' && isAuthenticated && isAuthenticated != '') 
+// next({name : '/'})
+// else next()
+//  })
 
 export default router;

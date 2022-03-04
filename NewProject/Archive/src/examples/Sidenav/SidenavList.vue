@@ -12,7 +12,28 @@
         </sidenav-collapse>
       </li> -->
       <li class="nav-item">
-        <sidenav-collapse navText="Employee" :to="{ name: 'Dashboard' }">
+        <sidenav-collapse navText="Employee Details" :to="{ name: 'Employee' }">
+          <template v-slot:icon>
+            <icon name="tables" />
+          </template>
+        </sidenav-collapse>
+      </li>
+       <li class="nav-item">
+        <sidenav-collapse navText="System Info" :to="{ name: 'Employee System Info'}">
+          <template v-slot:icon>
+            <icon name="tables" />
+          </template>
+        </sidenav-collapse>
+      </li>
+       <li class="nav-item">
+        <sidenav-collapse navText="System Master" :to="{ name: 'System Master' }">
+          <template v-slot:icon>
+            <icon name="tables" />
+          </template>
+        </sidenav-collapse>
+      </li>
+       <li class="nav-item">
+        <sidenav-collapse navText="Team" :to="{ name: 'Team' }">
           <template v-slot:icon>
             <icon name="tables" />
           </template>
@@ -24,8 +45,9 @@
             <icon name="billing" />
           </template>
         </sidenav-collapse>
-      </li>
+      </li> -->
 
+      <!--
       <li class="nav-item">
         <sidenav-collapse
           navText="Virtual Reality"

@@ -1,14 +1,15 @@
 <template>
   <div class="card mb-4">
-    <div class="card-header pb-0">
-      <h6> Employee Details</h6>
+    <div class="card-header pb-0 d-flex justify-content-between">
+      <h6>Employee Details</h6>
+      <button class="btn btn-success btn-sm m-3 rounded">Add Employee</button>
     </div>
     <div class="card-body px-0 pt-0 pb-2">
       <div class="table-responsive p-0">
         <table class="table align-items-center mb-0">
           <thead>
             <tr>
-              <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Employee</th>
+              <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Employee Name</th>
               <th
                 class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"
               >Position</th>

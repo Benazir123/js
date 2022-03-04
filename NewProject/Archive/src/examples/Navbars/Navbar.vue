@@ -31,9 +31,10 @@
         </div>
         <ul class="navbar-nav justify-content-end">
           <!-- Add Employee button -->
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <button class="btn btn-primary btn-sm m-3 rounded">Add Employee</button>
-          </li>
+          </li> -->
+          <!--end-->
           <li class="nav-item d-flex align-items-center">
             <router-link
               :to="{ name: 'Sign In' }"
@@ -199,20 +200,51 @@
               </li>
             </ul>
           </li>
+          <li>
+            <vsud-avatar :img="img2" class="me-3" size="sm" border-radius="lg" alt="user2" />
+          </li>
         </ul>
       </div>
     </div>
   </nav>
+  <!--Card for No.of.Employee counst and System count-->
+  <div class="container">
+     <div class="row">
+  <div class="col-sm-3">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">No.of.Employees</h5>
+        <p class="card-text">50</p>
+        <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-3">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">No.of.Systems</h5>
+        <p class="card-text">50</p>
+        <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+      </div>
+    </div>
+  </div>
+</div>
+  </div>
+<!--end of card -->
 </template>
 <script>
 import Breadcrumbs from "../Breadcrumbs.vue";
 import { mapMutations, mapActions } from "vuex";
+import VsudAvatar from "@/components/VsudAvatar.vue";
+import img2 from "../../assets/img/team-3.jpg";
+
 
 export default {
   name: "navbar",
   data() {
     return {
       showMenu: false,
+       img2
     };
   },
   props: ["minNav", "textWhite"],
@@ -230,6 +262,7 @@ export default {
   },
   components: {
     Breadcrumbs,
+     VsudAvatar
   },
   computed: {
     currentRouteName() {

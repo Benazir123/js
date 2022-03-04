@@ -5,23 +5,23 @@
         <authors-table />
       </div>
     </div>
-    <div class="row">
+    <!-- <div class="row">
       <div class="col-12">
         <projects-table />
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
 
 <script>
 import AuthorsTable from "./components/AuthorsTable";
-import ProjectsTable from "./components/ProjectsTable";
+// import ProjectsTable from "./components/ProjectsTable";
 
 export default {
   name: "tables",
   components: {
     AuthorsTable,
-    ProjectsTable,
+    // ProjectsTable,
   },
 };
 </script>
