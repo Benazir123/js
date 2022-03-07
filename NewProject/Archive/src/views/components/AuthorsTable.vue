@@ -2,7 +2,48 @@
   <div class="card mb-4">
     <div class="card-header pb-0 d-flex justify-content-between">
       <h6>Employee Details</h6>
-      <button class="btn btn-success btn-sm m-3 rounded">Add Employee</button>
+      <!-- <button class="btn btn-success btn-sm m-3 rounded">Add Employee</button> -->
+
+  <!-- Button trigger modal -->
+<button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  Add Employee
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title text-uppercase" id="exampleModalLabel">Add Employee Details</h5>
+        <button type="button" class="btn-close bg-secondary" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+      <form>
+          <div class="mb-3">
+            <label for="employee-name" class="col-form-label">Employee Name:</label>
+            <input type="text" class="form-control" id="employee-name" placeholder="Enter Your Name">
+          </div>
+          <div class="mb-3">
+            <label for="employee-position" class="col-form-label">Position:</label>
+            <input type="text" class="form-control" id="employee-position" placeholder="Enter Your Position"/>
+          </div>
+          <div class="mb-3">
+            <label for="employee-status" class="col-form-label">Status:</label>
+            <input type="text" class="form-control" id="employee-status" placeholder="Enter Your Status"/>
+          </div>
+            <div class="mb-3">
+            <label for="employee-joining-date" class="col-form-label">Date of Joining:</label>
+            <input type="text" class="form-control text-uppercase" id="employee-joining-date" placeholder="DD/MM/YYYY"/>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-info">Save Details</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal end-->
     </div>
     <div class="card-body px-0 pt-0 pb-2">
       <div class="table-responsive p-0">

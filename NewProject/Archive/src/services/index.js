@@ -4,7 +4,7 @@ export default() => {
           baseURL :"http://localhost:3000/api/login",
           headers:{
               Authorization: "",
-              "Content-Type": "application.json"
+              "Content-Type": 'application.json'
           } 
        }
        if(localStorage.getItem("access_token") !== null){

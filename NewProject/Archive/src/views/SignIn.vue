@@ -34,7 +34,7 @@
                       :type="number"
                       :value="email"
                       placeholder="Email"
-                      @keyup="validateEmail()"
+                      @keyup="validateEmail"
                       name="email"
                     />
                     <span v-if="email == '' && submitValidation == true"
@@ -47,10 +47,12 @@
                     <div>
                     <label>Password</label>
                     <vsud-input
-                      :type="password"
+                      :type="show ? 'text' : 'password'" id="password" v-model="password"
                       :value="password"
                       placeholder="Password"
-                      @keyup="validatePassword()"
+                      @keyup="validatePassword"
+                      @mousedown="show = !show"
+                      @mouseup="show = !show"
                       name="password"
                     />
                     <span v-if="password == '' && submitValidation == true"
@@ -158,9 +160,9 @@ export default {
       RegEmail,
       RegPassword,
       submitValidation: false,
-      email: "",
-      password: "",
-      router
+      email: "admin3@rd.com",
+      password: "radius123",
+      router,
       // validateEmail
       // email: "",
       // password: ""
