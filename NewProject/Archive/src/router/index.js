@@ -82,16 +82,16 @@ const router = createRouter({
   linkActiveClass: "active",
 });
 
-// router.beforeEach((to, from, next) => {
-//   let isAuthenticated = ''
-//  isAuthenticated = localStorage.getItem('access_token')
-//  console.log('isauthenticated',to.name)
-//  if(to.name !== 'Sign In' && !isAuthenticated){
-//   next('/Sign In')
-//  }
-// if (to.name == 'Sign In' && isAuthenticated && isAuthenticated != '') 
-// next({name : '/'})
-// else next()
-//  })
+router.beforeEach((to, from, next) => {
+ let isAuthenticated = ''
+ isAuthenticated = localStorage.getItem('access_token')
+ console.log('isauthenticated',to.name)
+ if(to.name !== 'Sign In' && !isAuthenticated){
+  next('/Sign In')
+ }
+if (to.name == 'Sign In' && isAuthenticated && isAuthenticated != '') 
+next({name : '/'})
+else next()
+ })
 
 export default router;

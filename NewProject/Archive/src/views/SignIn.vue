@@ -54,8 +54,9 @@
                       @mousedown="show = !show"
                       @mouseup="show = !show"
                       name="password"
+
                     />
-                    <span v-if="password == '' && submitValidation == true"
+                   <span v-if="password == '' && submitValidation == true"
                       >Password is required</span
                     >
                     <span v-if="!RegPassword && password !== ''"

@@ -19,24 +19,36 @@
       <div class="modal-body">
       <form>
          <div class="mb-3">
+            <label for="id" class="col-form-label">ID:</label>
+            <input type="text" class="form-control" id="id" placeholder="Enter Your ID">
+          </div>
+          <div class="mb-3">
             <label for="employee-id" class="col-form-label">Employee ID:</label>
-            <input type="text" class="form-control" id="employee-id" placeholder="Enter Your ID">
+            <input type="text" class="form-control" id="employee-id" placeholder="Enter Your Employee ID">
           </div>
           <div class="mb-3">
-            <label for="employee-name" class="col-form-label">Employee Name:</label>
-            <input type="text" class="form-control" id="employee-name" placeholder="Enter Your Name">
+            <label for="system-modalId" class="col-form-label">System Modal ID:</label>
+            <input type="text" class="form-control" id="system-modalId" placeholder="Enter Your System Modal ID"/>
           </div>
           <div class="mb-3">
-            <label for="system-id" class="col-form-label">System ID:</label>
-            <input type="text" class="form-control" id="system-id" placeholder="Enter Your System ID "/>
-          </div>
-          <div class="mb-3">
-            <label for="system-type" class="col-form-label">System Type:</label>
-            <input type="text" class="form-control" id="system-type" placeholder="Enter Your System Type"/>
+            <label for="system-os" class="col-form-label">System OS:</label>
+            <input type="text" class="form-control" id="system-os" placeholder="Enter Your System OS"/>
           </div>
             <div class="mb-3">
-            <label for="system-property" class="col-form-label">System's Property:</label>
-            <input type="text" class="form-control" id="system-property" placeholder="Office/Own"/>
+            <label for="system-memory" class="col-form-label">System Memory:</label>
+            <input type="text" class="form-control" id="system-memory" placeholder="Enter Your System Memory"/>
+          </div>
+          <div class="mb-3">
+            <label for="system-ram" class="col-form-label">System RAM:</label>
+            <input type="text" class="form-control" id="system-ram" placeholder="Enter Your System RAM"/>
+          </div>
+          <div class="mb-3">
+            <label for="system-chip" class="col-form-label">System Chip:</label>
+            <input type="text" class="form-control" id="system-type" placeholder="Enter Your System Chip"/>
+          </div>
+          <div class="mb-3">
+            <label for="employee-serialNo" class="col-form-label">Employee Serial No:</label>
+            <input type="text" class="form-control" id="system-type" placeholder="Enter Your Employee Serial No"/>
           </div>
         </form>
       </div>
@@ -53,9 +65,17 @@
         <table class="table align-items-center mb-0">
           <thead>
             <tr>
+              <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">ID</th>
               <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Employee ID</th>
-              <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Employee Name</th>
-              <th
+              <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">System Modal ID</th>
+              <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">System OS</th>
+              <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">System Memory</th>
+              <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">System RAM</th>
+              <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">System Chip</th>
+              <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Employee serial No</th>
+
+
+              <!-- <th
                 class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"
               >System ID</th>
               <th
@@ -63,7 +83,7 @@
               >System Type</th>
               <th
                 class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
-              >System's property</th>
+              >System's property</th> -->
               <!-- <th class="text-secondary opacity-7"></th> -->
                <th
                 class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-0"
@@ -71,8 +91,17 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>
+            <tr v-for="data in listArray" :key="data.id">
+              <td>{{data.id}}</td>
+              <td class="ps-5">{{data.emp_id}}</td>
+              <td class="ps-5">{{data.emp_sys_model_id}}</td>
+              <td class="ps-4">{{data.emp_sys_os}}</td>
+              <td class="ps-5">{{data.emp_sys_memory}}</td>
+              <td class="ps-5">{{data.emp_sys_ram}}</td>
+              <td class="ps-4">{{data.emp_sys_chip}}</td>
+              <td class="ps-4">{{data.emp_serial_no}}</td>
+
+              <!-- <td> -->
                 <!-- <div class="d-flex px-2 py-1">
                   <div>
                     <vsud-avatar :img="img1" size="sm" border-radius="lg" class="me-3" alt="user1" />
@@ -82,21 +111,21 @@
                     <p class="text-xs text-secondary mb-0">john@creative-tim.com</p>
                   </div>
                 </div> -->
-              </td>
-              <td>
+              <!-- </td> -->
+              <!-- <td>
                   
-              </td>
-              <td>
+              </td> -->
+              <!-- <td> -->
                 <!-- <p class="text-xs font-weight-bold mb-0">Manager</p>
                 <p class="text-xs text-secondary mb-0">Organization</p> -->
-              </td>
-              <td class="align-middle text-center text-sm">
+              <!-- </td> -->
+              <!-- <td class="align-middle text-center text-sm"> -->
                 <!-- <vsud-badge color="success" variant="gradient" size="sm">Online</vsud-badge> -->
-              </td>
-              <td class="align-middle text-center">
+              <!-- </td> -->
+              <!-- <td class="align-middle text-center"> -->
                 <!-- <span class="text-secondary text-xs font-weight-bold">23/04/18</span> -->
-              </td>
-              <td class="align-middle">
+              <!-- </td> -->
+              <td>
                 <a
                   href="javascript:;"
                   class="text-secondary font-weight-bold text-xs"
@@ -111,3 +140,27 @@
     </div>
   </div>
 </template>
+
+<script>
+import { ref } from '@vue/reactivity';
+import myService from '../../services/myService';
+import { onMounted } from '@vue/runtime-core';
+export default {
+  setup(){
+     var list = new Array();
+     const listArray = ref([])
+     async function listSystems(formData){
+       list = await myService.systemlist(formData)
+       listArray.value = list.data
+       console.log("Get SystemInfo=>", listArray.value)
+     }
+     onMounted(listSystems)
+     return{
+       list,
+       listArray,
+       listSystems
+     }
+  }
+  
+}
+</script>

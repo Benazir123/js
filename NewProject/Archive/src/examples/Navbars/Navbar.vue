@@ -200,8 +200,9 @@
               </li>
             </ul>
           </li>
+      <!-- dummy profile -->
           <li>
-            <vsud-avatar :img="img2" class="me-3" size="sm" border-radius="lg" alt="user2" />
+            <vsud-avatar :img="img2" class="me-3 cursor-pointer" size="sm" border-radius="lg" alt="user2"/>
           </li>
         </ul>
       </div>

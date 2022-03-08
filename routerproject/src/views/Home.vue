@@ -110,27 +110,6 @@ p {
             <td>{{ result.engagement_type }}</td>
             <td>{{  result.eo_firstName }}{{ result.eo_lastName }}</td>
             <td>{{ result.spk_firstName }}{{ result.spk_lastName }}
-                  <div
-                  v-if="result.spk_firstName.length > 1"
-                  class="w-5 h-5 cursor-pointer"
-                  @click="openMoreSpk(row, result.spk_firstName)"
-                >
-                  <span
-                    class="
-                      w-full
-                      h-full
-                      text-fs9
-                      inline-flex
-                      items-center
-                      text-white
-                      justify-center
-                      bg-black
-                      rounded-full
-                     "
-                  >
-                    +{{ result.spk_firstName.length - 1 }}
-                  </span>
-                </div>
 
             </td>
             <td>{{ result.status }}</td>
@@ -198,11 +177,6 @@ export default {
   //   },
   // }),
   setup() {
-      const openMoreSpk = (row, spkArray) => {
-      //this.hidespklist = !this.hidespklist;
-      row.hidespklist = !row.hidespklist;  
-      this.moreSpeaker = spkArray;
-      }
     const page = ref(1);
     const postValue = {
         page: page.value,
@@ -287,7 +261,6 @@ export default {
       // currentPage,
       // totalPages,
       page,
-    openMoreSpk, 
     };
   },
 };

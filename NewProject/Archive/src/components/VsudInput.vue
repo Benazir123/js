@@ -14,6 +14,7 @@
         :placeholder="placeholder"
         :isRequired="isRequired"
         :@keyup="keyup"
+        :icon="icon"
       />
       <span v-if="iconDir === 'right'" class="input-group-text">
         <i :class="getIcon(icon)"></i>

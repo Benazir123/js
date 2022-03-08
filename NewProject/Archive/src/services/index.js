@@ -1,10 +1,10 @@
 import axios from "axios"
 export default() => {
       const options = {
-          baseURL :"http://localhost:3000/api/login",
+          baseURL :"http://localhost:3000/api",
           headers:{
               Authorization: "",
-              "Content-Type": 'application.json'
+              'Content-Type': 'application/json'
           } 
        }
        if(localStorage.getItem("access_token") !== null){
