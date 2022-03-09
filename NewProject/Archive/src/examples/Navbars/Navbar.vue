@@ -74,7 +74,8 @@
               <i class="cursor-pointer fa fa-cog fixed-plugin-button-nav"></i>
             </a>
           </li>
-          <li
+          <!-- bell icon -->
+          <!-- <li
             class="nav-item dropdown d-flex align-items-center"
             :class="this.$store.state.isRTL ? 'ps-2' : 'pe-2'"
           >
@@ -199,11 +200,20 @@
                 </a>
               </li>
             </ul>
-          </li>
+          </li> -->
       <!-- dummy profile -->
-          <li>
-            <vsud-avatar :img="img2" class="me-3 cursor-pointer" size="sm" border-radius="lg" alt="user2"/>
-          </li>
+         <li> 
+            <div class="dropdown dropdown-hover"> 
+              <vsud-avatar :img="img2" class="cursor-pointer" size="sm" border-radius="lg" alt="user2"/>                
+                  <ul class="dropdown-menu">
+                      <!-- <li><a href="#">Profile</a></li>
+                      <li><a href="#">Settings</a></li> -->
+                      <li>
+                        <router-link to="/sign-in" @click="logOut()">Log out</router-link>
+                      </li>
+                  </ul>
+            </div>
+        </li>
         </ul>
       </div>
     </div>
@@ -238,14 +248,17 @@ import Breadcrumbs from "../Breadcrumbs.vue";
 import { mapMutations, mapActions } from "vuex";
 import VsudAvatar from "@/components/VsudAvatar.vue";
 import img2 from "../../assets/img/team-3.jpg";
+import { useRouter } from 'vue-router';
 
 
 export default {
   name: "navbar",
   data() {
+    let router = useRouter();
     return {
       showMenu: false,
-       img2
+       img2,
+       router
     };
   },
   props: ["minNav", "textWhite"],
@@ -260,6 +273,10 @@ export default {
       this.toggleSidebarColor("bg-white");
       this.navbarMinimize();
     },
+    logOut(){
+        localStorage.removeItem("access_token");
+        this.router.push("/sign-in")
+    }
   },
   components: {
     Breadcrumbs,

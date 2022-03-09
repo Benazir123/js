@@ -8,7 +8,7 @@ export default() => {
           } 
        }
        if(localStorage.getItem("access_token") !== null){
-             options.headers.Authorization = "Bearer " + localStorage.getItem("access_token")
+             options.headers.Authorization = localStorage.getItem("access_token")
        }
        const instance = axios.create(options)
        return instance

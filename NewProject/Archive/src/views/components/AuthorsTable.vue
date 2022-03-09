@@ -19,18 +19,22 @@
       </div>
       <div class="modal-body">
       <form>
-          <div class="mb-3">
+         <div class="mb-3">
+            <label for="employee-id" class="col-form-label">Employee ID:</label>
+            <input type="text" class="form-control" id="employee-id" placeholder="Enter Your Employee ID">
+          </div>
+          <!-- <div class="mb-3">
             <label for="employee-code" class="col-form-label">Employee Code:</label>
             <input type="text" class="form-control" id="employee-code" placeholder="Enter Your Employee Code">
-          </div>
+          </div> -->
           <div class="mb-3">
             <label for="employee-name" class="col-form-label">Employee Name:</label>
             <input type="text" class="form-control" id="employee-name" placeholder="Enter Your Name"/>
           </div>
-          <!-- <div class="mb-3">
-            <label for="employee-status" class="col-form-label">Status:</label>
-            <input type="text" class="form-control" id="employee-status" placeholder="Enter Your Status"/>
-          </div> -->
+          <div class="mb-3">
+            <label for="employee-role" class="col-form-label">Employee Role</label>
+            <input type="text" class="form-control" id="employee-role" placeholder="Enter Your Role"/>
+          </div>
             <!-- <div class="mb-3">
             <label for="employee-joining-date" class="col-form-label">Date of Joining:</label>
             <input type="text" class="form-control text-uppercase" id="employee-joining-date" placeholder="DD/MM/YYYY"/>
@@ -50,13 +54,16 @@
         <table class="table align-items-center mb-0">
           <thead>
             <tr>
-              <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">ID</th>
+              <!-- <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">ID</th> -->
               <th
                 class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"
-              >Employee Code</th>
+              >Employee ID</th>
               <th
                 class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
               >Employee Name</th>
+               <th
+                class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+              >Employee Role</th>
                 <!-- <th
                 class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
               >Employee Address</th> -->
@@ -70,11 +77,12 @@
             </tr>
           </thead>
           <tbody>
-            <tr v-for="data in listArray" :key="data.id">
-              <td>{{data.id}}</td>
-              <td>{{data.emp_code}}</td>
-              <td>{{data.emp_first_name}} {{data.emp_last_name}}</td>
+            <tr v-for="Emplist in EmplistArray" :key="Emplist.id">
+              <!-- <td>{{list.id}}</td> -->
+              <td>{{Emplist.emp_code}}</td>
+              <td>{{Emplist.emp_first_name}} {{Emplist.emp_last_name}}</td>
               <!-- <td>{{data.emp_address}}</td> -->
+              <td>{{Emplist.emp_role}}</td>
               <td>
                 <a
                   href="javascript:;"
@@ -100,17 +108,17 @@ import { onMounted } from '@vue/runtime-core';
 export default {
   name: "-table",
   setup(){
-     var list = new Array();
-     const listArray = ref([]);
-     async function listEmployees(postValue){
-        list = await myService.employeelist(postValue)
-        listArray.value = list.data
-        console.log("Get Employee =>", listArray.value)
+     var Emplist = new Array();
+     const EmplistArray = ref([]);
+     async function listEmployees(employeeData){
+        Emplist = await myService.employeelist(employeeData)
+        EmplistArray.value = Emplist
+        console.log("Get Employee=>", EmplistArray.value)
      }
     onMounted(listEmployees)
      return{
-       list,
-       listArray,
+       Emplist,
+       EmplistArray,
        listEmployees
      }
 

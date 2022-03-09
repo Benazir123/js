@@ -22,13 +22,35 @@
             <label for="id" class="col-form-label">ID:</label>
             <input type="text" class="form-control" id="id" placeholder="Enter Your ID">
           </div>
-          <div class="mb-3">
+          <div class="mb-3 dropdown">
             <label for="employee-id" class="col-form-label">Employee ID:</label>
-            <input type="text" class="form-control" id="employee-id" placeholder="Enter Your Employee ID">
+            <!--Select option for employee Id start -->
+             <select id="type" name="type" class="form-control">
+                 <option value="">Select Employee ID</option>
+                   <option v-for="dropdownEmpId in EmpIdArray"
+                      :value="dropdownEmpId.emp_code"
+                      :key="dropdownEmpId.id"
+                    >
+                       {{ dropdownEmpId.emp_code }}
+                   </option>
+                </select>
+            <!-- Select option for employee Id end-->
+            <!-- <input type="text" class="form-control" id="employee-id" placeholder="Enter Your Employee ID"> -->
           </div>
           <div class="mb-3">
-            <label for="system-modalId" class="col-form-label">System Modal ID:</label>
-            <input type="text" class="form-control" id="system-modalId" placeholder="Enter Your System Modal ID"/>
+            <label for="system-modalId" class="col-form-label">System Model</label>
+             <!--Select option for System Modal Id start -->
+             <select id="type" name="type" class="form-control">
+                <option value="">Select Model</option>
+                   <option v-for="data in ModelArray"
+                      :value="data.sys_model"
+                      :key="data.id"
+                    >
+                       {{ data.sys_model }}
+                   </option>          
+                    </select>
+            <!-- Select option for System Modal Id end-->
+            <!-- <input type="text" class="form-control" id="system-modalId" placeholder="Enter Your System Modal ID"/> -->
           </div>
           <div class="mb-3">
             <label for="system-os" class="col-form-label">System OS:</label>
@@ -65,9 +87,9 @@
         <table class="table align-items-center mb-0">
           <thead>
             <tr>
-              <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">ID</th>
+              <!-- <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">ID</th> -->
               <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Employee ID</th>
-              <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">System Modal ID</th>
+              <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">System Model ID</th>
               <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">System OS</th>
               <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">System Memory</th>
               <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">System RAM</th>
@@ -91,8 +113,8 @@
             </tr>
           </thead>
           <tbody>
-            <tr v-for="data in listArray" :key="data.id">
-              <td>{{data.id}}</td>
+            <tr v-for="data in SyslistArray" :key="data.id">
+              <!-- <td>{{data.id}}</td> -->
               <td class="ps-5">{{data.emp_id}}</td>
               <td class="ps-5">{{data.emp_sys_model_id}}</td>
               <td class="ps-4">{{data.emp_sys_os}}</td>
@@ -147,18 +169,37 @@ import myService from '../../services/myService';
 import { onMounted } from '@vue/runtime-core';
 export default {
   setup(){
-     var list = new Array();
-     const listArray = ref([])
-     async function listSystems(formData){
-       list = await myService.systemlist(formData)
-       listArray.value = list.data
-       console.log("Get SystemInfo=>", listArray.value)
+     var Syslist = new Array();
+     var dropdownEmpId = new Array();
+     var dropdownSystemModel = new Array();
+     const SyslistArray = ref([]);
+     const EmpIdArray = ref([]);
+     const ModelArray = ref([]);
+     async function listSystems(systemData){
+       Syslist = await myService.systemlist(systemData)
+       SyslistArray.value = Syslist.data
+       console.log("Get SystemInfo=>", SyslistArray.value)
+       
+       //Dropdown for System Model
+       dropdownSystemModel = await myService.systemmasterlist()
+       ModelArray.value = dropdownSystemModel.data
+       console.log("ModelArray", ModelArray.value)
+
+       //Dropdown for Employee ID
+        dropdownEmpId = await myService.employeelist()
+        EmpIdArray.value = dropdownEmpId
+        console.log("EmpIdArray", EmpIdArray.value)
      }
+      
      onMounted(listSystems)
      return{
-       list,
-       listArray,
-       listSystems
+       Syslist,
+       SyslistArray,
+       listSystems,
+       dropdownSystemModel,
+       ModelArray,
+       dropdownEmpId,
+       EmpIdArray
      }
   }
   

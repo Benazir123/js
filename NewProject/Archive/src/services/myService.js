@@ -1,22 +1,42 @@
 import axios from "./index"
 export default{
      //for get employees
-    async employeelist(postValue) {
-        const response = await axios().get("/admin/employee", postValue)
+    async employeelist(employeeData) {
+        const response = await axios().get("/admin/employee", employeeData)
             .then((response) => {
                 return response.data
             });
-            console.log("Loginresponse", response)
+            console.log("Employeeresponse", response)
         return response
     },
     
     //for get systeminfo
-    async systemlist(formData){
-        const response = await axios().get("/admin/empSystemInfo", formData)
+    async systemlist(systemData){
+        const response = await axios().get("/admin/empSystemInfo", systemData)
         .then((response) => {
             return response.data
         });
-        console.log("SystemInforesponse=>",response)
+        console.log("SystemInforesponse",response)
+        return response
+    },
+
+    //for get systemmaster
+    async systemmasterlist(masterData){
+        const response = await axios().get("/admin/systemmaster", masterData)
+        .then((response) => {
+            return response.data
+        });
+        console.log("SystemMasterresponse", response)
+        return response
+    },
+
+    //for get teamtable
+    async teamlist(teamData){
+        const response = await axios().get("/admin/teamInfo", teamData)
+        .then((response) => {
+            return response.data
+        });
+        console.log("Teamresponse", response)
         return response
     },
     
@@ -31,7 +51,7 @@ export default{
             .then((response) => {
                 return response.data
             });
-        console.log("response", response)
+        console.log("Loginresponse", response)
         // this.setToken(response)
         return response
     },

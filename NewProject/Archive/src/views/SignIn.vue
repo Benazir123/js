@@ -29,39 +29,44 @@
                 <div class="card-body">
                   <form role="form" class="text-start">
                     <div>
-                    <label>Email</label>
-                    <vsud-input
-                      :type="number"
-                      :value="email"
-                      placeholder="Email"
-                      @keyup="validateEmail"
-                      name="email"
-                    />
-                    <span v-if="email == '' && submitValidation == true"
-                      >Email is required</span
-                    >
-                    <span v-if="!RegEmail && email !== ''"
-                      >Enter a valid email address</span
-                    >
+                      <label>Email</label>
+                      <vsud-input
+                        :type="text"
+                        :value="email"
+                        placeholder="Email"
+                        name="email"
+                        v-model="email"
+                      />
+                      <span v-if="email == '' && submitValidation == true"
+                        >Email is required</span
+                      >
+                      <span
+                        v-show="
+                          !regexEmail.test(email) && email !== '' && email
+                        "
+                        >Enter a valid email address</span
+                      >
                     </div>
                     <div>
-                    <label>Password</label>
-                    <vsud-input
-                      :type="show ? 'text' : 'password'" id="password" v-model="password"
-                      :value="password"
-                      placeholder="Password"
-                      @keyup="validatePassword"
-                      @mousedown="show = !show"
-                      @mouseup="show = !show"
-                      name="password"
-
-                    />
-                   <span v-if="password == '' && submitValidation == true"
-                      >Password is required</span
-                    >
-                    <span v-if="!RegPassword && password !== ''"
-                      >Password should be minimum 6 characters</span
-                    >
+                      <label>Password</label>
+                      <vsud-input
+                        :type="password"
+                        :value="password"
+                        placeholder="Password"
+                        name="password"
+                        v-model="password"
+                      />
+                      <span v-if="password == '' && submitValidation == true"
+                        >Password is required</span
+                      >
+                      <span
+                        v-show="
+                          !regexPassword.test(password) &&
+                          password !== '' &&
+                          password
+                        "
+                        >Password should be minimum 6 characters</span
+                      >
                     </div>
                     <vsud-switch id="rememberMe" checked>
                       Remember me
@@ -137,8 +142,8 @@ import VsudSwitch from "@/components/VsudSwitch.vue";
 import VsudButton from "@/components/VsudButton.vue";
 // import { ref } from "@vue/reactivity";
 const body = document.getElementsByTagName("body")[0];
-import myService from '@/services/myService';
-import { useRouter } from 'vue-router';
+import myService from "@/services/myService";
+import { useRouter } from "vue-router";
 
 export default {
   name: "signin",
@@ -149,54 +154,54 @@ export default {
     VsudSwitch,
     VsudButton,
   },
-  data(){
+  data() {
     let regexEmail = new RegExp("[a-z0-9]+@[a-z]+.[a-z]{2,3}");
     let regexPassword = new RegExp("[a-z0-9A-Z].{6,}");
     let RegEmail = Boolean;
     let RegPassword = Boolean;
     let router = useRouter();
-    return{
+    return {
       regexEmail,
       regexPassword,
       RegEmail,
       RegPassword,
       submitValidation: false,
-      email: "admin3@rd.com",
-      password: "radius123",
+      // email: "admin3@rd.com",
+      // password: "radius123",
       router,
       // validateEmail
-      // email: "",
-      // password: ""
-    }
+      email: "",
+      password: "",
+    };
   },
   methods: {
     async signinFunction() {
-       event.preventDefault();
       this.submitValidation = true;
-       const employeeDetails ={
-           email: this.email,
-          password: this.password
-       }
-       console.log("EmployeeDetails", employeeDetails)
-      var storedValue = await myService.loginPost(employeeDetails)
-              console.log("storedValue", storedValue)
-      if(storedValue && storedValue.apiStatus == true){
-               this.router.push("/employee-system-info")
-              console.log("router")
-              myService.setToken(storedValue)
-              
-          }
-            
+      event.preventDefault();
+      if (this.email != "" && this.password != "") {
+        const employeeDetails = {
+          email: this.email,
+          password: this.password,
+        };
+        console.log("EmployeeDetails", employeeDetails);
+        var storedValue = await myService.loginPost(employeeDetails);
+        console.log("storedValue", storedValue);
+        if (storedValue && storedValue.apiStatus == true && storedValue.statusCode == 200) {
+          this.router.push("/employee-system-info");
+          console.log("router");
+          myService.setToken(storedValue);
+        }
+      }
     },
-    validateEmail() {
-      this.RegEmail = this.regexEmail.test(this.email);
-      console.log("email", this.email);
-      console.log("RegEmail", this.RegEmail);
-    },
-    validatePassword() {
-      this.RegPassword = this.regexPassword.test(this.password);
-      console.log("RegPassword", this.RegPassword);
-    },
+    // validateEmail() {
+    //   this.RegEmail = this.regexEmail.test(this.email);
+    //   console.log("email", this.email);
+    //   console.log("RegEmail", this.RegEmail);
+    // },
+    // validatePassword() {
+    //   this.RegPassword = this.regexPassword.test(this.password);
+    //   console.log("RegPassword", this.RegPassword);
+    // },
   },
   beforeMount() {
     this.$store.state.hideConfigButton = true;

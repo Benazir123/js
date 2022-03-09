@@ -13,8 +13,8 @@
         :value="value"
         :placeholder="placeholder"
         :isRequired="isRequired"
-        :@keyup="keyup"
-        :icon="icon"
+        @input="$emit('update:modelValue', $event.target.value)"
+
       />
       <span v-if="iconDir === 'right'" class="input-group-text">
         <i :class="getIcon(icon)"></i>
