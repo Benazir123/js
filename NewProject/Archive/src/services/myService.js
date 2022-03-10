@@ -61,4 +61,41 @@ export default{
         }
         console.log("token", response.data.token)
     },
+
+    //for add employee details in table from popup
+    async postEmployee(empData){
+        const postEmpData = {
+              
+            dep_id: empData.dep_id,
+            emp_code: empData.emp_code,
+            emp_first_name: empData.emp_first_name,
+            emp_last_name: empData.emp_last_name,
+            emp_role: empData.emp_role,
+        }
+        const response = await axios().post("/admin/addemployee", postEmpData)
+        .then((response) => {
+            return response.data
+        })
+        console.log("postEmployeeresponse", response)
+        return response
+    },
+
+    //for add systeminfo details in table from popup
+    async postSysteminfo(systemData){
+         const postSystemData = {
+            emp_id : systemData.emp_id,
+            emp_sys_model_id : systemData.emp_sys_model_id ,
+            emp_sys_os : systemData.emp_sys_os,
+            emp_sys_memory : systemData.emp_sys_memory,
+            emp_sys_ram : systemData.emp_sys_ram,
+            emp_sys_chip : systemData.emp_sys_chip ,
+            emp_serial_no : systemData.emp_serial_no
+         }
+         const response = await axios().post("/admin/addsysteminfo", postSystemData)
+         .then((response) => {
+             return response.data
+         })
+         console.log("postSystemInforesponse", response)
+         return response
+    }
 }

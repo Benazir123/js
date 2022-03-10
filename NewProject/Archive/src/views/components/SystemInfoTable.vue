@@ -18,10 +18,10 @@
       </div>
       <div class="modal-body">
       <form>
-         <div class="mb-3">
+         <!-- <div class="mb-3">
             <label for="id" class="col-form-label">ID:</label>
             <input type="text" class="form-control" id="id" placeholder="Enter Your ID">
-          </div>
+          </div> -->
           <div class="mb-3 dropdown">
             <label for="employee-id" class="col-form-label">Employee ID:</label>
             <!--Select option for employee Id start -->
@@ -43,39 +43,49 @@
              <select id="type" name="type" class="form-control">
                 <option value="">Select Model</option>
                    <option v-for="data in ModelArray"
-                      :value="data.sys_model"
+                      :value="data.sys_name"
                       :key="data.id"
                     >
-                       {{ data.sys_model }}
+                       {{ data.sys_name }}
                    </option>          
                     </select>
             <!-- Select option for System Modal Id end-->
             <!-- <input type="text" class="form-control" id="system-modalId" placeholder="Enter Your System Modal ID"/> -->
           </div>
+           <div class="mb-3">
+            <label for="emp_id" class="col-form-label control-label">ID:</label>
+            <input type="text" class="form-control" id="emp_id" v-model="emp_id" placeholder="Enter Your ID"/>
+            <span v-if="emp_id == '' && submitValidation == true">ID is required</span>
+          </div>
+           <div class="mb-3">
+            <label for="system-model_id" class="col-form-label control-label">System Model ID:</label>
+            <input type="text" class="form-control" id="system-model-id" v-model="emp_sys_model_id" placeholder="Enter Your System Model ID"/>
+            <span v-if="emp_sys_model_id == '' && submitValidation == true">System Model Id is required</span>
+          </div>
           <div class="mb-3">
             <label for="system-os" class="col-form-label">System OS:</label>
-            <input type="text" class="form-control" id="system-os" placeholder="Enter Your System OS"/>
+            <input type="text" class="form-control" id="system-os" v-model="emp_sys_os" placeholder="Enter Your System OS"/>
           </div>
             <div class="mb-3">
             <label for="system-memory" class="col-form-label">System Memory:</label>
-            <input type="text" class="form-control" id="system-memory" placeholder="Enter Your System Memory"/>
+            <input type="text" class="form-control" id="system-memory" v-model="emp_sys_memory" placeholder="Enter Your System Memory"/>
           </div>
           <div class="mb-3">
             <label for="system-ram" class="col-form-label">System RAM:</label>
-            <input type="text" class="form-control" id="system-ram" placeholder="Enter Your System RAM"/>
+            <input type="text" class="form-control" id="system-ram" v-model="emp_sys_ram" placeholder="Enter Your System RAM"/>
           </div>
           <div class="mb-3">
             <label for="system-chip" class="col-form-label">System Chip:</label>
-            <input type="text" class="form-control" id="system-type" placeholder="Enter Your System Chip"/>
+            <input type="text" class="form-control" id="system-type" v-model="emp_sys_chip" placeholder="Enter Your System Chip"/>
           </div>
           <div class="mb-3">
             <label for="employee-serialNo" class="col-form-label">Employee Serial No:</label>
-            <input type="text" class="form-control" id="system-type" placeholder="Enter Your Employee Serial No"/>
+            <input type="text" class="form-control" id="system-type" v-model="emp_serial_no" placeholder="Enter Your Employee Serial No"/>
           </div>
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-success">Save</button>
+        <button type="button" class="btn btn-success" @click="SaveSysinfo()">Save</button>
       </div>  
     </div>
   </div>
@@ -167,7 +177,22 @@
 import { ref } from '@vue/reactivity';
 import myService from '../../services/myService';
 import { onMounted } from '@vue/runtime-core';
+import { useRouter } from 'vue-router';
 export default {
+  data(){
+    let router = useRouter();
+    return{
+     submitValidation: false,
+        emp_id : "",
+        emp_sys_model_id : "" ,
+        emp_sys_os : "",
+        emp_sys_memory : "",
+        emp_sys_ram : "",
+        emp_sys_chip : "" ,
+        emp_serial_no : "",
+        router
+    }
+  },
   setup(){
      var Syslist = new Array();
      var dropdownEmpId = new Array();
@@ -190,8 +215,7 @@ export default {
         EmpIdArray.value = dropdownEmpId
         console.log("EmpIdArray", EmpIdArray.value)
      }
-      
-     onMounted(listSystems)
+      onMounted(listSystems)
      return{
        Syslist,
        SyslistArray,
@@ -201,7 +225,47 @@ export default {
        dropdownEmpId,
        EmpIdArray
      }
+  },
+  methods: {
+      SaveSysinfo(){
+        this.submitValidation = true
+        if(this.emp_id !== '' && this.emp_sys_model_id !== ""){
+           const ModalSysinfoData = {
+            emp_id : this.emp_id,
+            emp_sys_model_id : this.emp_sys_model_id ,
+            emp_sys_os : this.emp_sys_os,
+            emp_sys_memory : this.emp_sys_memory,
+            emp_sys_ram : this.emp_sys_ram,
+            emp_sys_chip : this.emp_sys_chip ,
+            emp_serial_no : this.emp_serial_no
+        }
+        console.log("ModalSysinfoData", ModalSysinfoData)
+        var SystemInfoData = myService.postSysteminfo(ModalSysinfoData)
+        console.log("postedSystemInfoData=>", SystemInfoData)
+    if(SystemInfoData  && SystemInfoData.apiStatus == true && SystemInfoData.statusCode == 200){
+          this.router.push("/system-info-table")
+      }
   }
+       
+        // return{
+        //   ModalSysinfoData,
+        //   SystemInfoData
+        // }
+      }
+  },
   
 }
 </script>
+
+<style scoped>
+   .control-label:after {
+    content:"*";
+    color: red;
+  }
+
+  span{
+    color: red;
+    font-size: 15px;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+</style>

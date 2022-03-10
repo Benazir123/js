@@ -8,7 +8,7 @@
         <table class="table align-items-center mb-0">
           <thead>
             <tr>
-              <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">ID</th>
+              <!-- <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">ID</th> -->
               <th
                 class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"
               >System Name</th>
@@ -22,7 +22,7 @@
           </thead>
           <tbody>
             <tr v-for="data in MasterlistArray" :key="data.id">
-              <td>{{data.id}}</td>
+              <!-- <td>{{data.id}}</td> -->
               <td>{{data.sys_name}}</td>
               <td>{{data.sys_model}}</td>
               <td>
